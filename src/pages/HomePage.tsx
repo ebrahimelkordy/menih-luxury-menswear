@@ -55,28 +55,28 @@ export function HomePage() {
 
   return (
     <div className="overflow-hidden">
-      {/* ===== 1. TOP MOVING BLACK MARQUEE BAR ===== */}
-      <div className="w-full bg-[#0D0B0A] text-[#FAF8F5] border-b border-[#FAF8F5]/10 py-3 overflow-hidden select-none z-20 relative shadow-2xl">
-        <div className="ticker-track-left gap-10 font-medium text-xs tracking-wider items-center">
-          <div className="flex items-center gap-10 whitespace-nowrap">
-            <span>lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')</span>
-            <span className="text-[#C5A880] text-sm">✦</span>
-            <span>lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')</span>
-            <span className="text-[#C5A880] text-sm">✦</span>
-            <span>lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')</span>
-            <span className="text-[#C5A880] text-sm">✦</span>
-            <span>lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')</span>
-            <span className="text-[#C5A880] text-sm">✦</span>
+      {/* ===== 1. TOP MOVING BLACK MARQUEE BAR (Quiet Luxury) ===== */}
+      <div className="w-full bg-[#0E0C0B]/95 backdrop-blur-md border-b border-ivory/10 py-2.5 overflow-hidden select-none z-20 relative">
+        <div className="ticker-track-left gap-12 text-[11px] sm:text-xs tracking-[0.2em] font-light text-ivory/80 items-center">
+          <div className="flex items-center gap-12 whitespace-nowrap">
+            <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • خياطة رجالية عربية فاخرة • قطن جيزة ٩٤ المصري • دهن عود كمبودي معتق • شحن مخصص لكافة المناطق') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD • COMPLIMENTARY SHIPPING')}</span>
+            <span className="text-terracotta/70 text-xs">✦</span>
+            <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • خياطة رجالية عربية فاخرة • قطن جيزة ٩٤ المصري • دهن عود كمبودي معتق • شحن مخصص لكافة المناطق') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD • COMPLIMENTARY SHIPPING')}</span>
+            <span className="text-terracotta/70 text-xs">✦</span>
+            <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • خياطة رجالية عربية فاخرة • قطن جيزة ٩٤ المصري • دهن عود كمبودي معتق • شحن مخصص لكافة المناطق') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD • COMPLIMENTARY SHIPPING')}</span>
+            <span className="text-terracotta/70 text-xs">✦</span>
+            <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • خياطة رجالية عربية فاخرة • قطن جيزة ٩٤ المصري • دهن عود كمبودي معتق • شحن مخصص لكافة المناطق') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD • COMPLIMENTARY SHIPPING')}</span>
+            <span className="text-terracotta/70 text-xs">✦</span>
           </div>
-          <div className="flex items-center gap-10 whitespace-nowrap">
-            <span>lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')</span>
-            <span className="text-[#C5A880] text-sm">✦</span>
-            <span>lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')</span>
-            <span className="text-[#C5A880] text-sm">✦</span>
-            <span>lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')</span>
-            <span className="text-[#C5A880] text-sm">✦</span>
-            <span>lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')</span>
-            <span className="text-[#C5A880] text-sm">✦</span>
+          <div className="flex items-center gap-12 whitespace-nowrap">
+            <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • خياطة رجالية عربية فاخرة • قطن جيزة ٩٤ المصري • دهن عود كمبودي معتق • شحن مخصص لكافة المناطق') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD • COMPLIMENTARY SHIPPING')}</span>
+            <span className="text-terracotta/70 text-xs">✦</span>
+            <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • خياطة رجالية عربية فاخرة • قطن جيزة ٩٤ المصري • دهن عود كمبودي معتق • شحن مخصص لكافة المناطق') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD • COMPLIMENTARY SHIPPING')}</span>
+            <span className="text-terracotta/70 text-xs">✦</span>
+            <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • خياطة رجالية عربية فاخرة • قطن جيزة ٩٤ المصري • دهن عود كمبودي معتق • شحن مخصص لكافة المناطق') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD • COMPLIMENTARY SHIPPING')}</span>
+            <span className="text-terracotta/70 text-xs">✦</span>
+            <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • خياطة رجالية عربية فاخرة • قطن جيزة ٩٤ المصري • دهن عود كمبودي معتق • شحن مخصص لكافة المناطق') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD • COMPLIMENTARY SHIPPING')}</span>
+            <span className="text-terracotta/70 text-xs">✦</span>
           </div>
         </div>
       </div>
@@ -159,33 +159,28 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ===== 2. BOTTOM MOVING GOLD MARQUEE BAR ===== */}
-      <div
-        className="w-full text-[#1A1615] font-bold py-3 overflow-hidden select-none z-20 relative shadow-2xl border-y border-[#B89635]"
-        style={{
-          background: 'linear-gradient(90deg, #A88958 0%, #E8D3A7 25%, #C5A880 50%, #E8D3A7 75%, #A88958 100%)'
-        }}
-      >
-        <div className="ticker-track-right gap-10 text-xs sm:text-sm tracking-wider items-center">
-          <div className="flex items-center gap-10 whitespace-nowrap">
-            <span>lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية أصلية') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee • Pure Japanese & Giza Cotton')</span>
-            <span className="text-[#1A1615]/60 text-base">✦</span>
-            <span>lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية أصلية') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee • Pure Japanese & Giza Cotton')</span>
-            <span className="text-[#1A1615]/60 text-base">✦</span>
-            <span>lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية أصلية') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee • Pure Japanese & Giza Cotton')</span>
-            <span className="text-[#1A1615]/60 text-base">✦</span>
-            <span>lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية أصلية') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee • Pure Japanese & Giza Cotton')</span>
-            <span className="text-[#1A1615]/60 text-base">✦</span>
+      {/* ===== 2. BOTTOM MOVING GOLD MARQUEE BAR (Semi-Transparent Dark with Shimmering Gold Text) ===== */}
+      <div className="w-full bg-[#1A1615]/85 backdrop-blur-md border-t border-b border-terracotta/25 py-2.5 overflow-hidden select-none z-20 relative">
+        <div className="ticker-track-right gap-12 text-[11px] sm:text-xs tracking-[0.2em] font-medium text-terracotta-light items-center">
+          <div className="flex items-center gap-12 whitespace-nowrap">
+            <span className="text-terracotta font-semibold">{lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني للطلبات فوق ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية فاخرة') : (siteSettings.goldBannerText || 'BESPOKE ROYAL TAILORING • COMPLIMENTARY EXPRESS SHIPPING • PERFECT FIT GUARANTEE • PREMIUM FABRICS')}</span>
+            <span className="text-terracotta/40 text-xs">✦</span>
+            <span className="text-terracotta font-semibold">{lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني للطلبات فوق ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية فاخرة') : (siteSettings.goldBannerText || 'BESPOKE ROYAL TAILORING • COMPLIMENTARY EXPRESS SHIPPING • PERFECT FIT GUARANTEE • PREMIUM FABRICS')}</span>
+            <span className="text-terracotta/40 text-xs">✦</span>
+            <span className="text-terracotta font-semibold">{lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني للطلبات فوق ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية فاخرة') : (siteSettings.goldBannerText || 'BESPOKE ROYAL TAILORING • COMPLIMENTARY EXPRESS SHIPPING • PERFECT FIT GUARANTEE • PREMIUM FABRICS')}</span>
+            <span className="text-terracotta/40 text-xs">✦</span>
+            <span className="text-terracotta font-semibold">{lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني للطلبات فوق ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية فاخرة') : (siteSettings.goldBannerText || 'BESPOKE ROYAL TAILORING • COMPLIMENTARY EXPRESS SHIPPING • PERFECT FIT GUARANTEE • PREMIUM FABRICS')}</span>
+            <span className="text-terracotta/40 text-xs">✦</span>
           </div>
-          <div className="flex items-center gap-10 whitespace-nowrap">
-            <span>lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية أصلية') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee • Pure Japanese & Giza Cotton')</span>
-            <span className="text-[#1A1615]/60 text-base">✦</span>
-            <span>lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية أصلية') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee • Pure Japanese & Giza Cotton')</span>
-            <span className="text-[#1A1615]/60 text-base">✦</span>
-            <span>lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية أصلية') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee • Pure Japanese & Giza Cotton')</span>
-            <span className="text-[#1A1615]/60 text-base">✦</span>
-            <span>lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية أصلية') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee • Pure Japanese & Giza Cotton')</span>
-            <span className="text-[#1A1615]/60 text-base">✦</span>
+          <div className="flex items-center gap-12 whitespace-nowrap">
+            <span className="text-terracotta font-semibold">{lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني للطلبات فوق ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية فاخرة') : (siteSettings.goldBannerText || 'BESPOKE ROYAL TAILORING • COMPLIMENTARY EXPRESS SHIPPING • PERFECT FIT GUARANTEE • PREMIUM FABRICS')}</span>
+            <span className="text-terracotta/40 text-xs">✦</span>
+            <span className="text-terracotta font-semibold">{lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني للطلبات فوق ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية فاخرة') : (siteSettings.goldBannerText || 'BESPOKE ROYAL TAILORING • COMPLIMENTARY EXPRESS SHIPPING • PERFECT FIT GUARANTEE • PREMIUM FABRICS')}</span>
+            <span className="text-terracotta/40 text-xs">✦</span>
+            <span className="text-terracotta font-semibold">{lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني للطلبات فوق ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية فاخرة') : (siteSettings.goldBannerText || 'BESPOKE ROYAL TAILORING • COMPLIMENTARY EXPRESS SHIPPING • PERFECT FIT GUARANTEE • PREMIUM FABRICS')}</span>
+            <span className="text-terracotta/40 text-xs">✦</span>
+            <span className="text-terracotta font-semibold">{lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني للطلبات فوق ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية فاخرة') : (siteSettings.goldBannerText || 'BESPOKE ROYAL TAILORING • COMPLIMENTARY EXPRESS SHIPPING • PERFECT FIT GUARANTEE • PREMIUM FABRICS')}</span>
+            <span className="text-terracotta/40 text-xs">✦</span>
           </div>
         </div>
       </div>

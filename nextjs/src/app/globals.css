@@ -236,7 +236,8 @@ img {
   background-color: #F5F0EB;
 }
 
-/* Smooth Infinite Marquee Tickers */
+
+/* Ultra-Luxury Slow & Smooth Tickers */
 @keyframes tickerMoveLeft {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -248,12 +249,12 @@ img {
 .ticker-track-left {
   display: flex;
   width: max-content;
-  animation: tickerMoveLeft 35s linear infinite;
+  animation: tickerMoveLeft 75s linear infinite;
 }
 .ticker-track-right {
   display: flex;
   width: max-content;
-  animation: tickerMoveRight 35s linear infinite;
+  animation: tickerMoveRight 80s linear infinite;
 }
 .ticker-track-left:hover, .ticker-track-right:hover {
   animation-play-state: paused;
