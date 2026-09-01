@@ -8,7 +8,8 @@ export async function GET() {
       settings = await prisma.siteSettings.create({ data: { id: 'current' } });
     }
     return NextResponse.json(settings);
-  } catch {
+  } catch (err) {
+    console.error('Error fetching settings:', err);
     return NextResponse.json({ error: 'Failed' }, { status: 500 });
   }
 }
@@ -16,15 +17,50 @@ export async function GET() {
 export async function PUT(req: Request) {
   try {
     const body = await req.json();
-    delete body.id;
-    delete body.updatedAt;
+
+    // Explicitly sanitize and convert types to match Prisma schema
+    const sanitizedData: Record<string, any> = {};
+
+    // String fields
+    const stringFields = [
+      'heroTitle', 'heroTitleAr', 'heroTagline', 'heroTaglineAr',
+      'heroSubtitle', 'heroSubtitleAr', 'heroImage', 'heroCtaText', 'heroCtaTextAr',
+      'marqueeText', 'marqueeTextAr', 'goldBannerText', 'goldBannerTextAr',
+      'editorialQuote', 'editorialQuoteAr', 'quoteAuthor', 'quoteAuthorAr',
+      'promoCode', 'contactPhone', 'contactWhatsapp', 'contactEmail',
+      'instagramUrl', 'facebookUrl', 'tiktokUrl', 'address', 'addressAr',
+      'logoUrl', 'brandName', 'brandNameAr'
+    ];
+    for (const field of stringFields) {
+      if (body[field] !== undefined) {
+        sanitizedData[field] = String(body[field] ?? '');
+      }
+    }
+
+    // Integer fields
+    const intFields = [
+      'promoDiscountPercent', 'bundleDiscountPercent',
+      'freeShippingThreshold', 'flatShippingRate'
+    ];
+    for (const field of intFields) {
+      if (body[field] !== undefined) {
+        sanitizedData[field] = parseInt(String(body[field]), 10) || 0;
+      }
+    }
+
+    // Array fields
+    if (Array.isArray(body.mixMatchCategories)) {
+      sanitizedData.mixMatchCategories = body.mixMatchCategories.filter(Boolean);
+    }
+
     const settings = await prisma.siteSettings.upsert({
       where: { id: 'current' },
-      update: body,
-      create: { id: 'current', ...body },
+      update: sanitizedData,
+      create: { id: 'current', ...sanitizedData },
     });
     return NextResponse.json(settings);
-  } catch {
-    return NextResponse.json({ error: 'Failed' }, { status: 500 });
+  } catch (err) {
+    console.error('Error updating settings:', err);
+    return NextResponse.json({ error: err instanceof Error ? err.message : 'Failed' }, { status: 500 });
   }
 }

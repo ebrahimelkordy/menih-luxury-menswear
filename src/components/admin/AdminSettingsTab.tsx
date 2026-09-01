@@ -17,7 +17,9 @@ const availableMixMatchCategories = [
 export function AdminSettingsTab() {
   const [settings, setSettings] = useState<SiteSettings>(defaultSiteSettings);
   const [loading, setLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
   const [savedFeedback, setSavedFeedback] = useState(false);
+  const [errorFeedback, setErrorFeedback] = useState<string | null>(null);
 
   // ── Resend API Key state
   const [resendKey, setResendKey] = useState('');
@@ -96,11 +98,21 @@ export function AdminSettingsTab() {
     }
   };
 
-  const handleSave = async (e: React.FormEvent) => {
-    e.preventDefault();
-    await saveSiteSettings(settings);
-    setSavedFeedback(true);
-    setTimeout(() => setSavedFeedback(false), 2500);
+  const handleSave = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    setIsSaving(true);
+    setErrorFeedback(null);
+    try {
+      await saveSiteSettings(settings);
+      setSavedFeedback(true);
+      setTimeout(() => setSavedFeedback(false), 3500);
+    } catch (err) {
+      console.error('Failed to save settings:', err);
+      setErrorFeedback(err instanceof Error ? err.message : 'فشل حفظ الإعدادات');
+      setTimeout(() => setErrorFeedback(null), 4000);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const toggleCategory = (catId: string) => {
@@ -122,17 +134,43 @@ export function AdminSettingsTab() {
   return (
     <div className="space-y-6 animate-fade-up">
       {/* Header Bar */}
-      <div className="flex items-center justify-between bg-espresso-light/80 border border-terracotta/20 p-5 rounded-3xl shadow-lg">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-espresso-light/80 border border-terracotta/20 p-5 rounded-3xl shadow-lg">
         <div>
           <h2 className="font-serif text-xl font-bold text-ivory">إعدادات العلامة التجارية واللوجو والمتجر</h2>
           <p className="text-xs text-ivory/50 mt-1">التحكم في اللوجو، اسم البراند، فئات منسق الأطقم، نسب الخصم، ووسائل التواصل المباشر.</p>
         </div>
-        {savedFeedback && (
-          <div className="px-4 py-2 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-semibold rounded-xl flex items-center gap-1.5 animate-fade-in">
-            <Check className="w-4 h-4" />
-            تم حفظ الإعدادات وتحديث اللوجو بنجاح!
-          </div>
-        )}
+        <div className="flex items-center gap-3">
+          {savedFeedback && (
+            <div className="px-4 py-2 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-semibold rounded-xl flex items-center gap-1.5 animate-fade-in shadow-md">
+              <Check className="w-4 h-4 text-emerald-400" />
+              تم الحفظ وتحديث المتجر بنجاح!
+            </div>
+          )}
+          {errorFeedback && (
+            <div className="px-4 py-2 bg-red-500/20 text-red-300 border border-red-500/30 text-xs font-semibold rounded-xl flex items-center gap-1.5 animate-fade-in">
+              {errorFeedback}
+            </div>
+          )}
+          <button
+            type="button"
+            onClick={() => handleSave()}
+            disabled={isSaving}
+            className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow-md cursor-pointer disabled:opacity-50 ${
+              savedFeedback
+                ? 'bg-emerald-600 text-ivory'
+                : 'bg-terracotta text-espresso hover:bg-terracotta-light'
+            }`}
+          >
+            {isSaving ? (
+              <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+            ) : savedFeedback ? (
+              <Check className="w-3.5 h-3.5" />
+            ) : (
+              <Save className="w-3.5 h-3.5" />
+            )}
+            <span>{isSaving ? 'جارٍ الحفظ...' : savedFeedback ? 'تم الحفظ بنجاح ✓' : 'حفظ التعديلات'}</span>
+          </button>
+        </div>
       </div>
 
       <form onSubmit={handleSave} className="space-y-6 text-xs">
@@ -464,13 +502,35 @@ export function AdminSettingsTab() {
         </div>
 
         {/* Submit Save Button */}
-        <div className="flex justify-end pt-2">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-espresso-light/60 border border-terracotta/20 rounded-2xl">
+          <div className="text-xs text-ivory/60">
+            {savedFeedback ? (
+              <span className="text-emerald-400 font-bold flex items-center gap-1.5 animate-fade-in">
+                <Check className="w-4 h-4" /> تم تطبيق وحفظ جميع التعديلات بنجاح!
+              </span>
+            ) : errorFeedback ? (
+              <span className="text-red-400 font-bold">{errorFeedback}</span>
+            ) : (
+              <span>يتم تطبيق كافة التعديلات فور الحفظ على المتجر والصفحة الرئيسية.</span>
+            )}
+          </div>
           <button
             type="submit"
-            className="px-8 py-3.5 bg-terracotta text-espresso text-sm font-bold rounded-2xl hover:bg-terracotta-light transition-all flex items-center gap-2 shadow-lg cursor-pointer"
+            disabled={isSaving}
+            className={`px-8 py-3.5 text-sm font-bold rounded-2xl transition-all flex items-center gap-2 shadow-lg cursor-pointer disabled:opacity-50 ${
+              savedFeedback
+                ? 'bg-emerald-600 text-ivory ring-2 ring-emerald-400'
+                : 'bg-terracotta text-espresso hover:bg-terracotta-light'
+            }`}
           >
-            <Save className="w-4 h-4" />
-            <span>حفظ الإعدادات وتحديث اللوجو فوراً</span>
+            {isSaving ? (
+              <RefreshCw className="w-4 h-4 animate-spin" />
+            ) : savedFeedback ? (
+              <Check className="w-4 h-4" />
+            ) : (
+              <Save className="w-4 h-4" />
+            )}
+            <span>{isSaving ? 'جارٍ حفظ الإعدادات...' : savedFeedback ? 'تم الحفظ بنجاح ✓' : 'حفظ الإعدادات وتحديث اللوجو فوراً'}</span>
           </button>
         </div>
       </form>
