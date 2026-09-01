@@ -60,7 +60,7 @@ export function AdminLogin({ onSuccess }: AdminLoginProps) {
               <KeyRound className="w-4 h-4 text-terracotta/50 absolute left-4 top-1/2 -translate-y-1/2" />
             </div>
             {error && (
-              <p className="text-xs text-red-400 mt-2 text-center">رمز المرور غير صحيح. (الرمز الافتراضي: 1234 أو ezar2026)</p>
+              <p className="text-xs text-red-400 mt-2 text-center">رمز المرور غير صحيح. يرجى المحاولة مرة أخرى.</p>
             )}
           </div>
 
