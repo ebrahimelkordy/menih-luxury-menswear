@@ -5,7 +5,6 @@ import { Footer } from '@/components/Footer';
 import { CartDrawer } from '@/components/CartDrawer';
 import { SearchModal } from '@/components/SearchModal';
 import { QuickAddModal } from '@/components/QuickAddModal';
-import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import { HomePage } from '@/pages/HomePage';
 import { ShopPage } from '@/pages/ShopPage';
 import { ProductPage } from '@/pages/ProductPage';
@@ -55,7 +54,6 @@ function AppContent() {
       <CartDrawer />
       <SearchModal />
       <QuickAddModal />
-      <FloatingWhatsApp />
     </div>
   );
 }

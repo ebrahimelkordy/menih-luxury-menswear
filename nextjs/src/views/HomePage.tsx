@@ -2,10 +2,11 @@ import { useEffect, useState, useRef } from 'react';
 import { ArrowRight, Sparkles, Star, Quote, Eye } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 import { heroImages, categories, getFeaturedProducts, trendingSearches } from '@/services/mockData';
-import { getSiteSettings, getAdminTestimonials, type SiteSettings, type TestimonialItem, defaultSiteSettings, defaultTestimonials } from '@/services/adminService';
+import { getSiteSettings, getCachedSiteSettings, getAdminTestimonials, type SiteSettings, type TestimonialItem, defaultSiteSettings, defaultTestimonials } from '@/services/adminService';
 import { useRouter } from '@/router';
 import { ProductCard } from '@/components/ProductCard';
 import { MixMatchStudio } from '@/components/MixMatchStudio';
+import { LazyImage } from '@/components/LazyImage';
 
 function useScrollY() {
   const [y, setY] = useState(0);
@@ -44,7 +45,7 @@ export function HomePage() {
   const scrollY = useScrollY();
   const featured = getFeaturedProducts();
 
-  const [siteSettings, setSiteSettings] = useState<SiteSettings>(defaultSiteSettings);
+  const [siteSettings, setSiteSettings] = useState<SiteSettings>(getCachedSiteSettings);
   const [testimonialsList, setTestimonialsList] = useState<TestimonialItem[]>(defaultTestimonials);
 
   useEffect(() => {
@@ -61,10 +62,11 @@ export function HomePage() {
           className="absolute inset-0 will-change-transform"
           style={{ transform: `translateY(${scrollY * 0.4}px) scale(1.05)` }}
         >
-          <img
-            src={siteSettings.heroImage || heroImages.heroVeiledMan}
+          <LazyImage
+            src={siteSettings.heroImage || '/images/thobe-gandoura.jpg'}
             alt=""
-            className="w-full h-full object-cover object-top"
+            priority={true}
+            className="w-full h-full"
             style={{ filter: 'brightness(0.62) contrast(1.08)' }}
           />
         </div>
@@ -137,16 +139,16 @@ export function HomePage() {
           <Quote className="w-10 h-10 text-terracotta/30 mx-auto mb-6" />
           <p className="font-serif text-2xl sm:text-3xl lg:text-4xl text-espresso leading-relaxed text-balance italic">
             {lang === 'ar'
-              ? '"?????? ??????? ???? ???? ???? — ?? ??? ????? ?? ??????? ????????. ?? ???? ?? ???? ????? ????? ?????? ?????? ???? ??????? ?????? ??????."'
-              : '"Prestige and dignity are not merely about appearance — they are reflections of values and heritage. Every piece at Ezar is crafted to command presence worthy of your status and legacy."'}
+              ? '"?????? ??????? ???? ???? ???? ï¿½ ?? ??? ????? ?? ??????? ????????. ?? ???? ?? ???? ????? ????? ?????? ?????? ???? ??????? ?????? ??????."'
+              : '"Prestige and dignity are not merely about appearance ï¿½ they are reflections of values and heritage. Every piece at Ezar is crafted to command presence worthy of your status and legacy."'}
           </p>
           <div className="mt-6 text-sm text-espresso/40 tracking-wider">
-            — {lang === 'ar' ? '??????? ????' : 'Founder, Ezar'}
+            ï¿½ {lang === 'ar' ? '??????? ????' : 'Founder, Ezar'}
           </div>
         </div>
       </section>
 
-      {/* ===== SHOP BY CATEGORY — Editorial Grid ===== */}
+      {/* ===== SHOP BY CATEGORY ï¿½ Editorial Grid ===== */}
       <section className="max-w-[1440px] mx-auto px-6 lg:px-10 py-16">
         <div className="flex items-end justify-between mb-10">
           <div>
@@ -167,12 +169,12 @@ export function HomePage() {
 
         {/* Asymmetric editorial grid */}
         <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-5">
-          {/* Large feature — Niqab */}
+          {/* Large feature ï¿½ Niqab */}
           <button
             onClick={() => navigate({ name: 'shop', category: categories[0].id })}
             className="group hover-zoom relative overflow-hidden rounded-2xl col-span-2 lg:col-span-6 aspect-[4/5] lg:aspect-[5/6]"
           >
-            <img src={categories[0].image} alt="" className="editorial-image" loading="lazy" />
+            <LazyImage src={categories[0].image} alt="" className="editorial-image" />
             <div className="absolute inset-0 bg-gradient-to-t from-espresso/80 via-espresso/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
               <span className="text-[10px] tracking-[0.25em] uppercase text-rose-dust mb-2 block">{lang === 'ar' ? '?????? ?????' : 'Featured Collection'}</span>
@@ -192,7 +194,7 @@ export function HomePage() {
               onClick={() => navigate({ name: 'shop', category: cat.id })}
               className="group hover-zoom relative overflow-hidden rounded-2xl col-span-1 lg:col-span-3 aspect-[3/4]"
             >
-              <img src={cat.image} alt="" className="editorial-image" loading="lazy" />
+              <LazyImage src={cat.image} alt="" className="editorial-image" />
               <div className="absolute inset-0 bg-gradient-to-t from-espresso/70 via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5">
                 <h3 className="font-serif text-lg font-semibold text-ivory">{lang === 'ar' ? cat.nameAr : cat.name}</h3>
@@ -208,7 +210,7 @@ export function HomePage() {
               onClick={() => navigate({ name: 'shop', category: cat.id })}
               className="group hover-zoom relative overflow-hidden rounded-2xl col-span-1 lg:col-span-6 aspect-[16/9] lg:aspect-[16/7]"
             >
-              <img src={cat.image} alt="" className="editorial-image" loading="lazy" />
+              <LazyImage src={cat.image} alt="" className="editorial-image" />
               <div className="absolute inset-0 bg-gradient-to-t from-espresso/70 via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-7">
                 <h3 className="font-serif text-xl lg:text-2xl font-semibold text-ivory">{lang === 'ar' ? cat.nameAr : cat.name}</h3>
@@ -252,7 +254,7 @@ export function HomePage() {
         </section>
       </RevealSection>
 
-      {/* ===== EDITORIAL SPLIT — The Craft ===== */}
+      {/* ===== EDITORIAL SPLIT ï¿½ The Craft ===== */}
       <RevealSection>
         <section className="bg-espresso text-ivory py-24 lg:py-32 overflow-hidden">
           <div className="max-w-[1440px] mx-auto px-6 lg:px-10">
@@ -260,11 +262,11 @@ export function HomePage() {
               {/* Image side */}
               <div className="relative">
                 <div className="relative aspect-[4/5] rounded-2xl overflow-hidden hover-zoom">
-                  <img src={heroImages.thobeGandoura} alt="" className="editorial-image" loading="lazy" />
+                  <LazyImage src={heroImages.thobeGandoura} alt="" className="editorial-image" />
                 </div>
                 {/* Floating accent image */}
                 <div className="absolute -bottom-8 -right-4 lg:-right-8 w-40 h-52 lg:w-56 lg:h-72 rounded-xl overflow-hidden shadow-2xl border-4 border-espresso hidden sm:block animate-float">
-                  <img src={heroImages.tasbihAgateRing} alt="" className="editorial-image" loading="lazy" />
+                  <LazyImage src={heroImages.tasbihAgateRing} alt="" className="editorial-image" />
                 </div>
               </div>
 
@@ -281,8 +283,8 @@ export function HomePage() {
                 </h2>
                 <p className="mt-5 text-base text-ivory/60 leading-relaxed font-light">
                   {lang === 'ar'
-                    ? '???? ?????? ?? ???? ??????? ???? ??????? ?????????? — ?? ???? ??? ?????? ???????? ??????? ???? ?????? ??????? ??????? ???? ????? ?????? ??????. ???? ????? ????? ????? ????? ?? ?????? ?????? ????? ????.'
-                    : 'Every piece at Ezar begins with selecting the finest raw materials—premium cold Japanese Toyobo cotton, hand-spun wool, and genuine zaree gold thread. We tailor with patience to deliver a majestic presence worthy of your trust.'}
+                    ? '???? ?????? ?? ???? ??????? ???? ??????? ?????????? ï¿½ ?? ???? ??? ?????? ???????? ??????? ???? ?????? ??????? ??????? ???? ????? ?????? ??????. ???? ????? ????? ????? ????? ?? ?????? ?????? ????? ????.'
+                    : 'Every piece at Ezar begins with selecting the finest raw materialsï¿½premium cold Japanese Toyobo cotton, hand-spun wool, and genuine zaree gold thread. We tailor with patience to deliver a majestic presence worthy of your trust.'}
                 </p>
 
                 <div className="mt-8 grid grid-cols-2 gap-4">
@@ -336,7 +338,7 @@ export function HomePage() {
           <div className="grid md:grid-cols-2 gap-5">
             {/* Banner 1 */}
             <div className="relative aspect-[4/5] md:aspect-[3/4] rounded-2xl overflow-hidden hover-zoom group">
-              <img src={heroImages.bishtRoyal} alt="" className="editorial-image" loading="lazy" />
+              <LazyImage src={heroImages.bishtRoyal} alt="" className="editorial-image" />
               <div className="absolute inset-0 bg-gradient-to-t from-espresso/70 via-transparent to-transparent" />
               <div className="absolute bottom-0 p-6 lg:p-8">
                 <span className="text-[10px] tracking-[0.25em] uppercase text-rose-dust">{lang === 'ar' ? '??? ????' : 'Royal Bisht'}</span>
@@ -355,7 +357,7 @@ export function HomePage() {
 
             {/* Banner 2 */}
             <div className="relative aspect-[4/5] md:aspect-[3/4] rounded-2xl overflow-hidden hover-zoom group">
-              <img src={heroImages.oudPerfume} alt="" className="editorial-image" loading="lazy" />
+              <LazyImage src={heroImages.oudPerfume} alt="" className="editorial-image" />
               <div className="absolute inset-0 bg-gradient-to-t from-espresso/70 via-transparent to-transparent" />
               <div className="absolute bottom-0 p-6 lg:p-8">
                 <span className="text-[10px] tracking-[0.25em] uppercase text-rose-dust">{lang === 'ar' ? '???? ????' : 'Oud & Fragrances'}</span>
@@ -392,7 +394,7 @@ export function HomePage() {
               <div key={review.id || i} className="p-6 bg-cream/20 rounded-2xl border border-cream/40 hover:border-terracotta/20 transition-colors group">
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0 bg-cream">
-                    <img src={review.image || heroImages.bishtRoyal} alt="" className="editorial-image" loading="lazy" />
+                    <LazyImage src={review.image || heroImages.bishtRoyal} alt="" className="editorial-image" />
                   </div>
                   <div className="flex-1">
                     <div className="text-sm font-medium text-espresso">{lang === 'ar' ? review.nameAr : review.name}</div>
@@ -412,14 +414,13 @@ export function HomePage() {
         </section>
       </RevealSection>
 
-      {/* ===== EYE CANDY — Full Width Visual ===== */}
+      {/* ===== EYE CANDY ï¿½ Full Width Visual ===== */}
       <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
-        <img
+        <LazyImage
           src={heroImages.heroVeiledMan}
           alt=""
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full"
           style={{ filter: 'brightness(0.65) contrast(1.1)' }}
-          loading="lazy"
         />
         <div className="absolute inset-0 bg-espresso/30 flex items-center justify-center">
           <div className="text-center px-6">

@@ -41,6 +41,17 @@ export function Header() {
 
   return (
     <>
+      {/* Top Moving Black Marquee Bar */}
+      <div className="bg-espresso-dark text-ivory/80 border-b border-ivory/10 py-1.5 overflow-hidden text-[11px] select-none">
+        <div className="flex animate-marquee whitespace-nowrap gap-12 font-medium">
+          <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')}</span>
+          <span>✦</span>
+          <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')}</span>
+          <span>✦</span>
+          <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')}</span>
+          <span>✦</span>
+        </div>
+      </div>
       <header
         className={`sticky top-0 z-50 transition-all duration-500 ${
           scrolled ? 'frosted-header shadow-[0_1px_20px_rgba(26,22,21,0.06)]' : 'bg-ivory/0'

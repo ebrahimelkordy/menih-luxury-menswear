@@ -47,6 +47,8 @@ export function AdminContentTab() {
     });
   }, []);
 
+
+
   const handleSaveSettings = async (e: React.FormEvent) => {
     e.preventDefault();
     await saveSiteSettings(settings);
@@ -79,7 +81,7 @@ export function AdminContentTab() {
       review: item.review,
       reviewAr: item.reviewAr,
       rating: item.rating,
-      image: item.image,
+      image: item.image || heroImages.bishtRoyal,
     });
     setIsTestiModalOpen(true);
   };
@@ -113,12 +115,11 @@ export function AdminContentTab() {
   };
 
   const presetImages = [
-    { label: 'العربي الملثم (Hero Portrait)', path: '/images/hero-arabian-man.jpg' },
-    { label: 'الثوب والجلابية المغربية', path: '/images/thobe-gandoura.jpg' },
-    { label: 'الشماغ والشال الكشميري', path: '/images/shemagh-kashmiri.jpg' },
-    { label: 'دهن العود وعطور الدار', path: '/images/oud-perfume.jpg' },
-    { label: 'السبحة والنفائس الملكية', path: '/images/tasbih-agate-ring.jpg' },
-    { label: 'البشت النجدي والرداء', path: '/images/bisht-royal.jpg' },
+    { label: 'الثوب والجلابية الملكية (Mannequin Thobe)', path: '/images/thobe-gandoura.jpg' },
+    { label: 'البشت النجدي الملكي (Royal Bisht)', path: '/images/bisht-royal.jpg' },
+    { label: 'الشماغ والشال الكشميري (Kashmiri Shemagh)', path: '/images/shemagh-kashmiri.jpg' },
+    { label: 'دهن العود وعطور الدار (Dehn Oud & Perfume)', path: '/images/oud-perfume.jpg' },
+    { label: 'السبحة والنفائس الملكية (Tasbih & Accessories)', path: '/images/tasbih-agate-ring.jpg' },
   ];
 
   return (
@@ -270,6 +271,27 @@ export function AdminContentTab() {
                 value={settings.marqueeTextAr}
                 onChange={(e) => setSettings({ ...settings, marqueeTextAr: e.target.value })}
                 className="w-full px-4 py-2.5 bg-espresso border border-ivory/10 rounded-xl text-ivory outline-none focus:border-terracotta"
+              />
+            </div>
+            <div>
+              <label className="block text-ivory/70 font-semibold mb-1">نص الشريط الذهبي الترويجي (عربي)</label>
+              <input
+                type="text"
+                value={settings.goldBannerTextAr || ''}
+                onChange={(e) => setSettings({ ...settings, goldBannerTextAr: e.target.value })}
+                placeholder="تفصيل ملكي مخصص • شحن مجاني للطلبات أكثر من ٢٠٠٠ ج.م"
+                className="w-full px-4 py-2.5 bg-espresso border border-ivory/10 rounded-xl text-ivory outline-none focus:border-terracotta"
+              />
+            </div>
+            <div>
+              <label className="block text-ivory/70 font-semibold mb-1">نص الشريط الذهبي الترويجي (English)</label>
+              <input
+                type="text"
+                value={settings.goldBannerText || ''}
+                onChange={(e) => setSettings({ ...settings, goldBannerText: e.target.value })}
+                placeholder="Bespoke Royal Tailoring • Free Luxury Shipping"
+                className="w-full px-4 py-2.5 bg-espresso border border-ivory/10 rounded-xl text-ivory outline-none focus:border-terracotta text-left"
+                dir="ltr"
               />
             </div>
             <div>
@@ -426,9 +448,10 @@ export function AdminContentTab() {
 
       {/* Testimonial Add/Edit Modal */}
       {isTestiModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-espresso/80 backdrop-blur-md animate-fade-in">
-          <div className="relative w-full max-w-lg bg-espresso-light border border-terracotta/40 rounded-3xl p-6 shadow-2xl space-y-5 text-xs">
-            <div className="flex items-center justify-between pb-3 border-b border-ivory/10">
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-espresso/85 backdrop-blur-md p-3 sm:p-6 md:p-8 flex items-start justify-center animate-fade-in">
+          <div className="relative w-full max-w-lg bg-espresso-light border border-terracotta/40 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden my-4 sm:my-8 animate-scale-up text-xs">
+            {/* Header */}
+            <div className="bg-espresso border-b border-ivory/10 px-5 sm:px-6 py-4 flex items-center justify-between">
               <h3 className="font-serif text-base font-bold text-ivory">
                 {editingTesti ? 'تعديل رأي العميل' : 'إضافة رأي عميل جديد'}
               </h3>
@@ -441,7 +464,7 @@ export function AdminContentTab() {
               </button>
             </div>
 
-            <form onSubmit={handleSaveTesti} className="space-y-4">
+            <form onSubmit={handleSaveTesti} className="p-4 sm:p-6 space-y-4">
               <div className="grid sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-ivory/70 font-semibold mb-1">اسم العميل (عربي)</label>
@@ -501,7 +524,8 @@ export function AdminContentTab() {
                 </div>
               </div>
 
-              <div className="flex justify-end gap-2 pt-3 border-t border-ivory/10">
+              {/* Action Footer */}
+              <div className="pt-4 border-t border-ivory/10 flex justify-end gap-2">
                 <button
                   type="button"
                   onClick={() => setIsTestiModalOpen(false)}

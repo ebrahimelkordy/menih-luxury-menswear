@@ -274,6 +274,27 @@ export function AdminContentTab() {
               />
             </div>
             <div>
+              <label className="block text-ivory/70 font-semibold mb-1">نص الشريط الذهبي الترويجي (عربي)</label>
+              <input
+                type="text"
+                value={settings.goldBannerTextAr || ''}
+                onChange={(e) => setSettings({ ...settings, goldBannerTextAr: e.target.value })}
+                placeholder="تفصيل ملكي مخصص • شحن مجاني للطلبات أكثر من ٢٠٠٠ ج.م"
+                className="w-full px-4 py-2.5 bg-espresso border border-ivory/10 rounded-xl text-ivory outline-none focus:border-terracotta"
+              />
+            </div>
+            <div>
+              <label className="block text-ivory/70 font-semibold mb-1">نص الشريط الذهبي الترويجي (English)</label>
+              <input
+                type="text"
+                value={settings.goldBannerText || ''}
+                onChange={(e) => setSettings({ ...settings, goldBannerText: e.target.value })}
+                placeholder="Bespoke Royal Tailoring • Free Luxury Shipping"
+                className="w-full px-4 py-2.5 bg-espresso border border-ivory/10 rounded-xl text-ivory outline-none focus:border-terracotta text-left"
+                dir="ltr"
+              />
+            </div>
+            <div>
               <label className="block text-ivory/70 font-semibold mb-1">نص الماركي بالإنجليزية</label>
               <input
                 type="text"

@@ -28,6 +28,8 @@ export interface SiteSettings {
   heroCtaTextAr: string;
   marqueeText: string;
   marqueeTextAr: string;
+  goldBannerText: string;
+  goldBannerTextAr: string;
   editorialQuote: string;
   editorialQuoteAr: string;
   quoteAuthor: string;
@@ -63,6 +65,8 @@ export const defaultSiteSettings: SiteSettings = {
   heroCtaTextAr: 'استكشف المجموعات',
   marqueeText: 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD',
   marqueeTextAr: 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات',
+  goldBannerText: 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee',
+  goldBannerTextAr: 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس',
   editorialQuote: 'Prestige and dignity are not merely about appearance — they are reflections of values and heritage. Every piece at Ezar is crafted to command presence worthy of your status and legacy.',
   editorialQuoteAr: 'الوقار والهيبة ليسا مجرد مظهر، بل انعكاس للأصالة والمكانة. في إزار، نصيغ كل خيط ليعكس فخامتكم وحضوركم المهيب في كل محفل.',
   quoteAuthor: 'Ezar Master Tailor',
