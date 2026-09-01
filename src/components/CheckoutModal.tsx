@@ -265,50 +265,23 @@ export function CheckoutModal({ subtotal, discount, shipping, total, onClose }: 
               </div>
             </div>
 
-            {/* Payment Method */}
-            <div className="space-y-3">
+            {/* Payment Method - Cash on Delivery Only */}
+            <div className="space-y-2">
               <h3 className="text-xs font-bold text-espresso uppercase tracking-wider flex items-center gap-1.5">
-                <CreditCard className="w-4 h-4 text-terracotta" />
+                <Truck className="w-4 h-4 text-terracotta" />
                 <span>{t('checkout.payment')}</span>
               </h3>
-              <div className="grid sm:grid-cols-2 gap-3">
-                <button
-                  type="button"
-                  onClick={() => setPaymentMethod('cod')}
-                  className={`flex items-center gap-3 p-4 rounded-2xl border-2 transition-all text-left rtl:text-right cursor-pointer ${
-                    paymentMethod === 'cod' ? 'border-espresso bg-sand/60 shadow-xs' : 'border-cream bg-white hover:border-espresso/30'
-                  }`}
-                >
-                  <Truck className="w-5 h-5 text-terracotta flex-shrink-0" />
-                  <div className="flex-1">
-                    <div className="text-xs font-bold text-espresso">{t('checkout.cashOnDelivery')}</div>
-                    <div className="text-[11px] text-espresso/50">{lang === 'ar' ? 'الدفع نقداً عند استلام الطلب' : 'Pay when you receive'}</div>
-                  </div>
-                  <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
-                    paymentMethod === 'cod' ? 'border-espresso' : 'border-cream'
-                  }`}>
-                    {paymentMethod === 'cod' && <div className="w-2 h-2 rounded-full bg-espresso" />}
-                  </div>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setPaymentMethod('card')}
-                  className={`flex items-center gap-3 p-4 rounded-2xl border-2 transition-all text-left rtl:text-right cursor-pointer ${
-                    paymentMethod === 'card' ? 'border-espresso bg-sand/60 shadow-xs' : 'border-cream bg-white hover:border-espresso/30'
-                  }`}
-                >
-                  <CreditCard className="w-5 h-5 text-terracotta flex-shrink-0" />
-                  <div className="flex-1">
-                    <div className="text-xs font-bold text-espresso">{t('checkout.card')}</div>
-                    <div className="text-[11px] text-espresso/50">Visa, Mastercard, Mada</div>
-                  </div>
-                  <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
-                    paymentMethod === 'card' ? 'border-espresso' : 'border-cream'
-                  }`}>
-                    {paymentMethod === 'card' && <div className="w-2 h-2 rounded-full bg-espresso" />}
-                  </div>
-                </button>
+              <div className="flex items-center gap-3 p-4 rounded-2xl border-2 border-espresso bg-sand/60 shadow-xs">
+                <div className="w-8 h-8 rounded-xl bg-terracotta/15 flex items-center justify-center flex-shrink-0">
+                  <Truck className="w-4 h-4 text-terracotta" />
+                </div>
+                <div className="flex-1">
+                  <div className="text-xs font-bold text-espresso">{t('checkout.cashOnDelivery')}</div>
+                  <div className="text-[11px] text-espresso/60">{lang === 'ar' ? 'الدفع نقداً عند استلام ومعاينة الطلب' : 'Pay in cash upon delivery & inspection'}</div>
+                </div>
+                <div className="px-3 py-1 bg-espresso text-ivory rounded-full text-[10px] font-bold">
+                  {lang === 'ar' ? 'مفعّل' : 'Active'}
+                </div>
               </div>
             </div>
 

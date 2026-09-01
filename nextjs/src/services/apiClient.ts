@@ -92,6 +92,10 @@ export async function createOrderApi(orderData: any): Promise<any> {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(orderData),
   });
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.error || 'Failed to place order');
+  }
   return res.json();
 }
 

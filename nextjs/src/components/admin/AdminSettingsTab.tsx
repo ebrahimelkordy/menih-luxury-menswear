@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import {
   Tag, Percent, Truck, Phone, Check, Save, Sparkles, Instagram, MessageCircle,
-  Facebook, Mail, MapPin, CheckSquare, Square, Image as ImageIcon, RefreshCw
+  Facebook, Mail, MapPin, CheckSquare, Square, Image as ImageIcon, RefreshCw,
+  Key, Send, Eye, EyeOff, Trash2, ShieldCheck
 } from 'lucide-react';
 import { getSiteSettings, saveSiteSettings, type SiteSettings, defaultSiteSettings } from '@/services/adminService';
 
@@ -18,12 +19,82 @@ export function AdminSettingsTab() {
   const [loading, setLoading] = useState(true);
   const [savedFeedback, setSavedFeedback] = useState(false);
 
+  // ── Resend API Key state
+  const [resendKey, setResendKey] = useState('');
+  const [resendConfigured, setResendConfigured] = useState<boolean | null>(null);
+  const [resendSaving, setResendSaving] = useState(false);
+  const [resendMsg, setResendMsg] = useState<{ type: 'ok' | 'err'; text: string } | null>(null);
+  const [showResendKey, setShowResendKey] = useState(false);
+  const [testEmail, setTestEmail] = useState('');
+  const [testSending, setTestSending] = useState(false);
+
   useEffect(() => {
     getSiteSettings().then((s) => {
       setSettings(s);
       setLoading(false);
     });
+    // Check if Resend key is already configured
+    fetch('/api/secrets/resend-key')
+      .then((r) => r.json())
+      .then((d) => setResendConfigured(d.configured ?? false))
+      .catch(() => setResendConfigured(false));
   }, []);
+
+  const handleSaveResendKey = async () => {
+    if (!resendKey.startsWith('re_')) {
+      setResendMsg({ type: 'err', text: 'المفتاح يجب أن يبدأ بـ re_' });
+      return;
+    }
+    setResendSaving(true);
+    setResendMsg(null);
+    try {
+      const res = await fetch('/api/secrets/resend-key', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ apiKey: resendKey }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      setResendConfigured(true);
+      setResendKey('');
+      setResendMsg({ type: 'ok', text: '✅ تم حفظ المفتاح بشكل مشفر بنجاح' });
+    } catch (err) {
+      setResendMsg({ type: 'err', text: err instanceof Error ? err.message : 'فشل الحفظ' });
+    } finally {
+      setResendSaving(false);
+    }
+  };
+
+  const handleDeleteResendKey = async () => {
+    if (!confirm('هل أنت متأكد من حذف مفتاح Resend؟ لن تُرسل إيميلات تلقائية بعد الحذف.')) return;
+    try {
+      await fetch('/api/secrets/resend-key', { method: 'DELETE' });
+      setResendConfigured(false);
+      setResendMsg({ type: 'ok', text: 'تم حذف المفتاح' });
+    } catch {
+      setResendMsg({ type: 'err', text: 'فشل الحذف' });
+    }
+  };
+
+  const handleTestEmail = async () => {
+    if (!testEmail) return;
+    setTestSending(true);
+    setResendMsg(null);
+    try {
+      const res = await fetch('/api/email/test', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: testEmail }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      setResendMsg({ type: 'ok', text: `📧 تم إرسال إيميل تجريبي إلى ${testEmail}` });
+    } catch (err) {
+      setResendMsg({ type: 'err', text: err instanceof Error ? err.message : 'فشل الإرسال' });
+    } finally {
+      setTestSending(false);
+    }
+  };
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -403,6 +474,114 @@ export function AdminSettingsTab() {
           </button>
         </div>
       </form>
+
+      {/* ─── Resend Email Service Section ─────────────────────────────────── */}
+      <div className="bg-espresso-light/80 border border-terracotta/20 p-6 rounded-3xl shadow-lg space-y-5">
+        <div className="flex items-center gap-3 mb-1">
+          <div className="w-8 h-8 rounded-xl bg-blue-500/20 flex items-center justify-center">
+            <Mail className="w-4 h-4 text-blue-400" />
+          </div>
+          <div>
+            <h3 className="text-ivory font-bold text-sm">خدمة الإيميل — Resend</h3>
+            <p className="text-ivory/40 text-xs">يُرسل إيميل تأكيد تلقائي للعميل عند كل طلب جديد</p>
+          </div>
+          {resendConfigured === true && (
+            <div className="mr-auto flex items-center gap-1.5 px-3 py-1 bg-emerald-500/20 border border-emerald-500/30 rounded-full text-emerald-300 text-xs font-semibold">
+              <ShieldCheck className="w-3.5 h-3.5" />
+              مُكوَّن ومُشفَّر
+            </div>
+          )}
+          {resendConfigured === false && (
+            <div className="mr-auto px-3 py-1 bg-amber-500/20 border border-amber-500/30 rounded-full text-amber-300 text-xs font-semibold">
+              غير مُكوَّن
+            </div>
+          )}
+        </div>
+
+        {/* Key Input */}
+        <div className="space-y-2">
+          <label className="text-ivory/70 text-xs font-semibold flex items-center gap-1.5">
+            <Key className="w-3.5 h-3.5 text-terracotta" />
+            {resendConfigured ? 'تحديث مفتاح Resend API' : 'إضافة مفتاح Resend API'}
+          </label>
+          <div className="flex gap-2">
+            <div className="relative flex-1">
+              <input
+                type={showResendKey ? 'text' : 'password'}
+                value={resendKey}
+                onChange={(e) => setResendKey(e.target.value)}
+                placeholder="re_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                className="w-full px-4 py-2.5 bg-espresso border border-ivory/10 rounded-xl text-ivory text-xs outline-none focus:border-terracotta font-mono pr-10"
+              />
+              <button
+                type="button"
+                onClick={() => setShowResendKey(!showResendKey)}
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-ivory/40 hover:text-ivory/80 transition-colors cursor-pointer"
+              >
+                {showResendKey ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+              </button>
+            </div>
+            <button
+              type="button"
+              onClick={handleSaveResendKey}
+              disabled={resendSaving || !resendKey}
+              className="px-4 py-2.5 bg-terracotta text-espresso text-xs font-bold rounded-xl hover:bg-terracotta-light transition-all flex items-center gap-1.5 disabled:opacity-50 cursor-pointer"
+            >
+              {resendSaving ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Check className="w-3.5 h-3.5" />}
+              حفظ مشفر
+            </button>
+            {resendConfigured && (
+              <button
+                type="button"
+                onClick={handleDeleteResendKey}
+                className="px-3 py-2.5 bg-red-500/20 border border-red-500/30 text-red-400 text-xs font-bold rounded-xl hover:bg-red-500/30 transition-all flex items-center gap-1.5 cursor-pointer"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
+          <p className="text-ivory/30 text-[10px]">المفتاح يُخزَّن مشفراً بـ AES-256 ولا يظهر أبداً في قاعدة البيانات بصيغته الأصلية.</p>
+        </div>
+
+        {/* Test Email */}
+        {resendConfigured && (
+          <div className="space-y-2 border-t border-ivory/10 pt-4">
+            <label className="text-ivory/70 text-xs font-semibold flex items-center gap-1.5">
+              <Send className="w-3.5 h-3.5 text-blue-400" />
+              إرسال إيميل تجريبي للتأكد من الاتصال
+            </label>
+            <div className="flex gap-2">
+              <input
+                type="email"
+                value={testEmail}
+                onChange={(e) => setTestEmail(e.target.value)}
+                placeholder="your@email.com"
+                className="flex-1 px-4 py-2.5 bg-espresso border border-ivory/10 rounded-xl text-ivory text-xs outline-none focus:border-blue-400 font-mono"
+              />
+              <button
+                type="button"
+                onClick={handleTestEmail}
+                disabled={testSending || !testEmail}
+                className="px-4 py-2.5 bg-blue-600/80 text-ivory text-xs font-bold rounded-xl hover:bg-blue-500 transition-all flex items-center gap-1.5 disabled:opacity-50 cursor-pointer"
+              >
+                {testSending ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Send className="w-3.5 h-3.5" />}
+                اختبار
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Feedback */}
+        {resendMsg && (
+          <div className={`px-4 py-2.5 rounded-xl text-xs font-semibold animate-fade-in ${
+            resendMsg.type === 'ok'
+              ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+              : 'bg-red-500/20 text-red-400 border border-red-500/30'
+          }`}>
+            {resendMsg.text}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

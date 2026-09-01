@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Search, ShoppingBag, Menu, Globe, X } from 'lucide-react';
+import { Search, ShoppingBag, Menu, Globe, X, Truck } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 import { categories } from '@/services/mockData';
 import { useRouter, type Route } from '@/router';

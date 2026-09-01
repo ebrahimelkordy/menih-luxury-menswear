@@ -3,9 +3,11 @@ export function formatPrice(amount: number, currency = 'EGP'): string {
   return `$${(amount / 50).toFixed(0)}`;
 }
 
-export function generateOrderNumber(count: number): string {
+export function generateOrderNumber(count?: number): string {
   const dateStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-  return `MENIH-${dateStr}-${String(count + 1).padStart(4, '0')}`;
+  const randomSuffix = Math.floor(1000 + Math.random() * 9000);
+  const countSuffix = count !== undefined ? String(count + 1).padStart(3, '0') : '';
+  return `EZAR-${dateStr}-${countSuffix ? countSuffix + '-' : ''}${randomSuffix}`;
 }
 
 export function cn(...classes: (string | undefined | false | null)[]): string {

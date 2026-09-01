@@ -70,23 +70,23 @@ model ProductVariant {
 }
 
 model Order {
-  id              String   @id @default(uuid())
-  orderNumber     String   @unique
-  customerName    String
-  customerPhone   String
+  id               String   @id @default(uuid())
+  orderNumber      String   @unique
+  customerName     String
+  customerPhone    String
   customerWhatsapp String?
-  customerEmail   String?
-  customerCity    String
-  customerAddress String
-  items           Json
-  subtotal        Int
-  bundleDiscount  Int      @default(0)
-  total           Int
-  status          String   @default("pending")
-  paymentMethod   String   @default("cod")
-  notes           String?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  customerEmail    String?
+  customerCity     String
+  customerAddress  String
+  items            Json
+  subtotal         Int
+  bundleDiscount   Int      @default(0)
+  total            Int
+  status           String   @default("pending")
+  paymentMethod    String   @default("cod")
+  notes            String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 
   @@map("orders")
 }
@@ -95,33 +95,38 @@ model SiteSettings {
   id                    String   @id @default("current")
   heroTitle             String   @default("The Prestige of\nArabian Dignity")
   heroTitleAr           String   @default("هيبة الأصالة\nوالوقار والتميز")
-  heroTagline           String   @default("Maison Menih — Luxury Arabian Menswear")
-  heroTaglineAr         String   @default("دار المنيع — أزياء رجالية عربية فاخرة")
+  heroTagline           String   @default("Ezar — Luxury Arabian Menswear")
+  heroTaglineAr         String   @default("إزار — أزياء رجالية عربية فاخرة")
   heroSubtitle          String   @default("Bespoke thobes, royal ceremonial bishts, premium woven shemaghs & aged Dehn El Oud — crafted with precision for the modern gentleman.")
   heroSubtitleAr        String   @default("ثياب مخيطة خصيصاً، بشت ملكي للمناسبات، أشمغة فاخرة ودهن العود الكمبودي المعتق — صُممت بدقة متناهية للرجل الأصيل.")
   heroImage             String   @default("/images/hero-arabian-man.jpg")
   heroCtaText           String   @default("Explore Collection")
   heroCtaTextAr         String   @default("استكشف المجموعات")
-  marqueeText           String   @default("MENIH LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD")
-  marqueeTextAr         String   @default("دار المنيع • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات")
-  editorialQuote        String   @default("Prestige and dignity are not merely about appearance — they are reflections of values and heritage. Every piece at Maison Menih is crafted to command presence worthy of your status and legacy.")
-  editorialQuoteAr      String   @default("الهيبة والوقار ليسا مجرد مظهر — بل هما تعبير عن المبادئ والأصالة. كل قطعة في دار المنيع صُممت لتمنح حضوراً مهيباً يليق بمكانتك وتراثك العريق.")
-  quoteAuthor           String   @default("Founder, Maison Menih")
-  quoteAuthorAr         String   @default("المؤسس، دار المنيع")
-  promoCode             String   @default("MENIH10")
+  marqueeText           String   @default("EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD • COMPLIMENTARY SHIPPING")
+  marqueeTextAr         String   @default("إزار • خياطة رجالية عربية فاخرة • قطن جيزة ٩٤ المصري • دهن عود كمبودي معتق • شحن مخصص لكافة المناطق")
+  goldBannerText        String   @default("BESPOKE ROYAL TAILORING • COMPLIMENTARY EXPRESS SHIPPING • PERFECT FIT GUARANTEE • PREMIUM FABRICS")
+  goldBannerTextAr      String   @default("تفصيل ملكي مخصص • شحن مجاني للطلبات فوق ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية فاخرة")
+  editorialQuote        String   @default("Prestige and dignity are not merely about appearance — they are reflections of values and heritage. Every piece at Ezar is crafted to command presence worthy of your status and legacy.")
+  editorialQuoteAr      String   @default("الهيبة والوقار ليسا مجرد مظهر — بل هما تعبير عن المبادئ والأصالة. كل قطعة في إزار صُممت لتمنح حضوراً مهيباً يليق بمكانتك وتراثك العريق.")
+  quoteAuthor           String   @default("Founder, Ezar")
+  quoteAuthorAr         String   @default("المؤسس، إزار")
+  promoCode             String   @default("EZAR10")
   promoDiscountPercent  Int      @default(10)
   bundleDiscountPercent Int      @default(15)
   freeShippingThreshold Int      @default(1500)
   flatShippingRate      Int      @default(50)
   contactPhone          String   @default("+20 100 000 0000")
   contactWhatsapp       String   @default("+20 100 000 0000")
-  contactEmail          String   @default("concierge@menih.com")
-  instagramUrl          String   @default("https://instagram.com/menih_luxury")
-  facebookUrl           String   @default("https://facebook.com/menih_luxury")
-  tiktokUrl             String   @default("https://tiktok.com/@menih_luxury")
+  contactEmail          String   @default("concierge@ezar.com")
+  instagramUrl          String   @default("https://instagram.com/ezar_luxury")
+  facebookUrl           String   @default("https://facebook.com/ezar_luxury")
+  tiktokUrl             String   @default("https://tiktok.com/@ezar_luxury")
   address               String   @default("Sultan Hussein St., Heliopolis, Cairo, Egypt")
   addressAr             String   @default("شارع السلطان حسين، مصر الجديدة، القاهرة، جمهورية مصر العربية")
   mixMatchCategories    String[] @default(["thobe", "shemagh", "bisht", "accessories", "fragrances"])
+  logoUrl               String   @default("")
+  brandName             String   @default("EZAR")
+  brandNameAr           String   @default("إزار")
   updatedAt             DateTime @updatedAt
 
   @@map("site_settings")
@@ -142,4 +147,16 @@ model Testimonial {
   updatedAt    DateTime @updatedAt
 
   @@map("testimonials")
+}
+
+/// Stores encrypted API keys — never stores plaintext
+model AppSecrets {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String
+  iv        String
+  authTag   String
+  updatedAt DateTime @updatedAt
+
+  @@map("app_secrets")
 }

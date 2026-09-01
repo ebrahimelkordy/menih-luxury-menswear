@@ -60,7 +60,7 @@ export const defaultSiteSettings: SiteSettings = {
   heroTaglineAr: 'إزار — أزياء رجالية عربية فاخرة',
   heroSubtitle: 'Bespoke thobes, royal ceremonial bishts, premium woven shemaghs & aged Dehn El Oud — crafted with precision for the modern gentleman.',
   heroSubtitleAr: 'ثياب مخيطة خصيصاً، بشت ملكي للمناسبات، أشمغة فاخرة ودهن العود الكمبودي المعتق — صُممت بدقة متناهية للرجل الأصيل.',
-  heroImage: heroImages.heroVeiledMan,
+  heroImage: heroImages.thobeGandoura || '/images/thobe-gandoura.jpg',
   heroCtaText: 'Explore Collection',
   heroCtaTextAr: 'استكشف المجموعات',
   marqueeText: 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD',

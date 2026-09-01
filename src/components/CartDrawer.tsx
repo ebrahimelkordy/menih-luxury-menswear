@@ -24,11 +24,6 @@ export function CartDrawer() {
     return () => { document.body.style.overflow = ''; };
   }, [isCartOpen]);
 
-  // Upsell items: Iqal + Cufflinks
-  const upsellItems = useMemo(() => {
-    return products.filter((p) => p.id === 'p11' || p.id === 'p12').slice(0, 2);
-  }, []);
-
   const discount = promoApplied ? Math.round(cartSubtotal * 0.1) : 0;
   const remaining = Math.max(0, freeShippingThreshold - cartSubtotal);
   const shippingFree = remaining === 0;
@@ -158,44 +153,6 @@ export function CartDrawer() {
                     </div>
                   );
                 })}
-
-                {/* Upsell */}
-                <div className="pt-4 border-t border-cream/50">
-                  <p className="text-xs font-semibold text-espresso/60 uppercase tracking-wider mb-3">
-                    {t('cart.upsellTitle')}
-                  </p>
-                  <div className="space-y-2">
-                    {upsellItems.map((p) => {
-                      const v = p.variants[0];
-                      const inCart = cart.some((i) => i.productId === p.id);
-                      return (
-                        <button
-                          key={p.id}
-                          disabled={inCart}
-                          onClick={() => addToCart({ productId: p.id, variantId: v.id, size: p.sizes[0], quantity: 1 })}
-                          className="flex items-center gap-3 w-full p-2 rounded-xl border border-cream/60 hover:border-terracotta/30 hover:bg-cream/20 transition-all group disabled:opacity-40"
-                        >
-                          <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-cream">
-                            <img src={v.image} alt="" className="editorial-image" loading="lazy" />
-                          </div>
-                          <div className="flex-1 text-left min-w-0">
-                            <div className="text-xs font-medium text-espresso truncate">
-                              {lang === 'ar' ? p.titleAr : p.title}
-                            </div>
-                            <div className="text-xs text-espresso/50">{formatPrice(p.price)}</div>
-                          </div>
-                          {inCart ? (
-                            <Check className="w-4 h-4 text-olive" />
-                          ) : (
-                            <div className="w-7 h-7 rounded-full bg-espresso text-ivory flex items-center justify-center group-hover:bg-terracotta transition-colors">
-                              <Plus className="w-4 h-4" />
-                            </div>
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
               </div>
 
               {/* Footer */}

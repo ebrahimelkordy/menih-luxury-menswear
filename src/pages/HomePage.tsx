@@ -159,8 +159,8 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ===== 2. BOTTOM MOVING GOLD MARQUEE BAR (Semi-Transparent Dark with Shimmering Gold Text) ===== */}
-      <div className="w-full bg-[#1A1615]/85 backdrop-blur-md border-t border-b border-terracotta/25 py-2.5 overflow-hidden select-none z-20 relative">
+      {/* ===== 2. BOTTOM MOVING GOLD MARQUEE BAR (Transparent Golden Glassmorphism) ===== */}
+      <div className="w-full border-t border-b border-[#C5A880]/30 py-2.5 overflow-hidden select-none z-20 relative" style={{ background: 'linear-gradient(135deg, rgba(197,168,128,0.18) 0%, rgba(212,183,142,0.10) 50%, rgba(184,148,100,0.20) 100%)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
         <div className="ticker-track-right gap-12 text-[11px] sm:text-xs tracking-[0.2em] font-medium text-terracotta-light items-center">
           <div className="flex items-center gap-12 whitespace-nowrap">
             <span className="text-terracotta font-semibold">{lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني للطلبات فوق ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية فاخرة') : (siteSettings.goldBannerText || 'BESPOKE ROYAL TAILORING • COMPLIMENTARY EXPRESS SHIPPING • PERFECT FIT GUARANTEE • PREMIUM FABRICS')}</span>
@@ -469,7 +469,7 @@ export function HomePage() {
       {/* ===== EYE CANDY � Full Width Visual ===== */}
       <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
         <LazyImage
-          src={heroImages.heroVeiledMan}
+          src={heroImages.bishtRoyal}
           alt=""
           className="w-full h-full"
           style={{ filter: 'brightness(0.65) contrast(1.1)' }}
