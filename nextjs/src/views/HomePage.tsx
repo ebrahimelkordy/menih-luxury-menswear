@@ -40,16 +40,14 @@ function useInView<T extends HTMLElement>() {
 }
 
 export function HomePage() {
-  const { t, lang } = useApp();
+  const { t, lang, siteSettings } = useApp();
   const { navigate } = useRouter();
   const scrollY = useScrollY();
   const featured = getFeaturedProducts();
 
-  const [siteSettings, setSiteSettings] = useState<SiteSettings>(getCachedSiteSettings);
   const [testimonialsList, setTestimonialsList] = useState<TestimonialItem[]>(defaultTestimonials);
 
   useEffect(() => {
-    getSiteSettings().then(setSiteSettings);
     getAdminTestimonials().then(setTestimonialsList);
   }, []);
 

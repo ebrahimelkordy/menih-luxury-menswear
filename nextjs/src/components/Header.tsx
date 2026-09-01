@@ -5,7 +5,7 @@ import { categories } from '@/services/mockData';
 import { useRouter, type Route } from '@/router';
 
 export function Header() {
-  const { t, lang, toggleLang, currency, setCurrency, cartCount, openCart, openSearch, openMenu, isRTL } = useApp();
+  const { t, lang, toggleLang, currency, setCurrency, cartCount, openCart, openSearch, openMenu, isRTL, siteSettings } = useApp();
   const { navigate } = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [currencyOpen, setCurrencyOpen] = useState(false);
@@ -86,12 +86,25 @@ export function Header() {
                 onClick={() => go({ name: 'home' })}
                 className="flex flex-col items-center no-tap-highlight group"
               >
-                <span className="font-serif text-lg sm:text-2xl font-bold tracking-[0.25em] text-espresso leading-none group-hover:text-terracotta transition-colors">
-                  EZAR
-                </span>
-                <span className="text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] text-terracotta uppercase mt-0.5 font-medium">
-                  {lang === 'ar' ? 'إزار للرجال' : 'Luxury Menswear'}
-                </span>
+                {siteSettings?.logoUrl ? (
+                  <img
+                    src={siteSettings.logoUrl}
+                    alt={lang === 'ar' ? (siteSettings.brandNameAr || 'إزار') : (siteSettings.brandName || 'EZAR')}
+                    className="h-9 sm:h-11 w-auto max-w-[140px] sm:max-w-[170px] object-contain transition-transform group-hover:scale-105"
+                    onError={(e) => {
+                      (e.target as HTMLElement).style.display = 'none';
+                    }}
+                  />
+                ) : (
+                  <>
+                    <span className="font-serif text-lg sm:text-2xl font-bold tracking-[0.25em] text-espresso leading-none group-hover:text-terracotta transition-colors">
+                      {lang === 'ar' ? (siteSettings?.brandNameAr || 'EZAR') : (siteSettings?.brandName || 'EZAR')}
+                    </span>
+                    <span className="text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] text-terracotta uppercase mt-0.5 font-medium">
+                      {lang === 'ar' ? (siteSettings?.brandNameAr ? siteSettings.brandNameAr + ' للرجال' : 'إزار للرجال') : 'Luxury Menswear'}
+                    </span>
+                  </>
+                )}
               </button>
             </div>
 
@@ -176,7 +189,7 @@ export function Header() {
 }
 
 export function MobileMenu() {
-  const { isMenuOpen, closeMenu, t, lang, toggleLang, currency, setCurrency } = useApp();
+  const { isMenuOpen, closeMenu, t, lang, toggleLang, currency, setCurrency, siteSettings } = useApp();
   const { navigate } = useRouter();
 
   if (!isMenuOpen) return null;
@@ -197,10 +210,25 @@ export function MobileMenu() {
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-cream">
           <div>
-            <span className="font-serif text-xl font-bold tracking-[0.2em] text-espresso">EZAR</span>
-            <span className="block text-[9px] tracking-[0.25em] text-terracotta uppercase">
-              {lang === 'ar' ? 'إزار للرجال' : 'Luxury Menswear'}
-            </span>
+            {siteSettings?.logoUrl ? (
+              <img
+                src={siteSettings.logoUrl}
+                alt="Logo"
+                className="h-10 w-auto max-w-[130px] object-contain"
+                onError={(e) => {
+                  (e.target as HTMLElement).style.display = 'none';
+                }}
+              />
+            ) : (
+              <>
+                <span className="font-serif text-xl font-bold tracking-[0.2em] text-espresso">
+                  {lang === 'ar' ? (siteSettings?.brandNameAr || 'إزار') : (siteSettings?.brandName || 'EZAR')}
+                </span>
+                <span className="block text-[9px] tracking-[0.25em] text-terracotta uppercase">
+                  {lang === 'ar' ? (siteSettings?.brandNameAr ? siteSettings.brandNameAr + ' للرجال' : 'إزار للرجال') : 'Luxury Menswear'}
+                </span>
+              </>
+            )}
           </div>
           <button onClick={closeMenu} className="p-2 rounded-full hover:bg-cream transition-colors" aria-label={t('nav.close')}>
             <X className="w-5 h-5 text-espresso" />

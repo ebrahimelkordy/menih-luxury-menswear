@@ -6,15 +6,10 @@ import { getSiteSettings, type SiteSettings, defaultSiteSettings } from '@/servi
 import { useRouter } from '@/router';
 
 export function Footer() {
-  const { t, lang } = useApp();
+  const { t, lang, siteSettings } = useApp();
   const { navigate } = useRouter();
-  const [settings, setSettings] = useState<SiteSettings>(defaultSiteSettings);
 
-  useEffect(() => {
-    getSiteSettings().then(setSettings);
-  }, []);
-
-  const whatsappClean = (settings.contactWhatsapp || '+20 100 000 0000').replace(/\D/g, '');
+  const whatsappClean = (siteSettings?.contactWhatsapp || '+20 100 000 0000').replace(/\D/g, '');
 
   return (
     <footer className="bg-espresso text-ivory mt-20 border-t border-ivory/10">
@@ -23,17 +18,32 @@ export function Footer() {
         {/* Brand */}
         <div className="space-y-4">
           <div>
-            <span className="font-serif text-2xl font-bold tracking-[0.25em] text-ivory">EZAR</span>
-            <span className="block text-[9px] tracking-[0.3em] text-terracotta uppercase font-medium mt-0.5">
-              {lang === 'ar' ? 'إزار للرجال' : 'Luxury Menswear'}
-            </span>
+            {siteSettings?.logoUrl ? (
+              <img
+                src={siteSettings.logoUrl}
+                alt="Logo"
+                className="h-10 w-auto max-w-[150px] object-contain mb-1"
+                onError={(e) => {
+                  (e.target as HTMLElement).style.display = 'none';
+                }}
+              />
+            ) : (
+              <>
+                <span className="font-serif text-2xl font-bold tracking-[0.25em] text-ivory">
+                  {lang === 'ar' ? (siteSettings?.brandNameAr || 'إزار') : (siteSettings?.brandName || 'EZAR')}
+                </span>
+                <span className="block text-[9px] tracking-[0.3em] text-terracotta uppercase font-medium mt-0.5">
+                  {lang === 'ar' ? (siteSettings?.brandNameAr ? siteSettings.brandNameAr + ' للرجال' : 'إزار للرجال') : 'Luxury Menswear'}
+                </span>
+              </>
+            )}
           </div>
           <p className="text-xs text-ivory/60 leading-relaxed max-w-xs">
             {t('footer.aboutText')}
           </p>
           <div className="pt-2 flex items-center gap-2 text-xs text-ivory/50">
             <MapPin className="w-3.5 h-3.5 text-terracotta flex-shrink-0" />
-            <span>{lang === 'ar' ? (settings.addressAr || settings.address) : settings.address}</span>
+            <span>{lang === 'ar' ? (siteSettings?.addressAr || siteSettings?.address) : siteSettings?.address}</span>
           </div>
           <p className="text-[10px] text-terracotta font-medium tracking-wider uppercase">
             ✦ {t('footer.madeInEgypt')} ✦
@@ -113,9 +123,9 @@ export function Footer() {
             {t('footer.connect')}
           </h4>
           <div className="flex gap-2.5 mb-5">
-            {settings.instagramUrl && (
+            {siteSettings?.instagramUrl && (
               <a
-                href={settings.instagramUrl}
+                href={siteSettings.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-xl bg-ivory/10 hover:bg-terracotta hover:text-espresso flex items-center justify-center transition-all cursor-pointer"
@@ -124,9 +134,9 @@ export function Footer() {
                 <Instagram className="w-4 h-4" />
               </a>
             )}
-            {settings.facebookUrl && (
+            {siteSettings?.facebookUrl && (
               <a
-                href={settings.facebookUrl}
+                href={siteSettings.facebookUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-xl bg-ivory/10 hover:bg-terracotta hover:text-espresso flex items-center justify-center transition-all cursor-pointer"
@@ -144,9 +154,9 @@ export function Footer() {
             >
               <MessageCircle className="w-4 h-4" />
             </a>
-            {settings.contactEmail && (
+            {siteSettings?.contactEmail && (
               <a
-                href={`mailto:${settings.contactEmail}`}
+                href={`mailto:${siteSettings.contactEmail}`}
                 className="w-9 h-9 rounded-xl bg-ivory/10 hover:bg-terracotta hover:text-espresso flex items-center justify-center transition-all cursor-pointer"
                 title="Email"
               >
@@ -157,11 +167,11 @@ export function Footer() {
           <div className="space-y-1 text-xs text-ivory/50">
             <div className="flex items-center gap-2 font-mono" dir="ltr">
               <Phone className="w-3.5 h-3.5 text-terracotta flex-shrink-0" />
-              <span>{settings.contactPhone}</span>
+              <span>{siteSettings?.contactPhone || '+20 100 000 0000'}</span>
             </div>
             <div className="flex items-center gap-2 font-mono" dir="ltr">
               <Mail className="w-3.5 h-3.5 text-terracotta flex-shrink-0" />
-              <span>{settings.contactEmail}</span>
+              <span>{siteSettings?.contactEmail || 'concierge@ezar.com'}</span>
             </div>
           </div>
         </div>

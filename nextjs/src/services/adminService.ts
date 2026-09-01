@@ -246,10 +246,13 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 export async function saveSiteSettings(settings: SiteSettings): Promise<boolean> {
   if (typeof window !== 'undefined') {
     localStorage.setItem('ezar_site_settings', JSON.stringify(settings));
-    localStorage.setItem('ezar_site_settings', JSON.stringify(settings));
+    window.dispatchEvent(new CustomEvent('ezar_settings_updated', { detail: settings }));
   }
   try {
     await updateSiteSettingsApi(settings);
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('ezar_settings_updated', { detail: settings }));
+    }
   } catch (err) {
     console.warn('Updated settings locally');
   }

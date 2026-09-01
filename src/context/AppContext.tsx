@@ -3,6 +3,7 @@ import type { Language, Currency } from '@/i18n/translations';
 import { translate } from '@/i18n/translations';
 import type { CartItem } from '@/services/mockData';
 import { fetchCategories, fetchProducts } from '@/services/apiClient';
+import { getSiteSettings, getCachedSiteSettings, type SiteSettings, defaultSiteSettings } from '@/services/adminService';
 import {
   products,
   categories,
@@ -23,6 +24,11 @@ interface AppContextValue {
   isRTL: boolean;
   t: (key: string, params?: Record<string, string>) => string;
   formatPrice: (price: number) => string;
+
+  // Site Settings (Dynamic Logo, Brand Name, Shipping, Promos, etc.)
+  siteSettings: SiteSettings;
+  setSiteSettings: (s: SiteSettings) => void;
+  refreshSiteSettings: () => Promise<void>;
 
   // Cart
   cart: CartItem[];
@@ -65,8 +71,33 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [quickAddProductId, setQuickAddProductId] = useState<string | null>(null);
   const [dbLoaded, setDbLoaded] = useState(false);
+  const [siteSettings, setSiteSettings] = useState<SiteSettings>(getCachedSiteSettings);
 
   const isRTL = lang === 'ar';
+
+  const refreshSiteSettings = useCallback(async () => {
+    try {
+      const fresh = await getSiteSettings();
+      setSiteSettings(fresh);
+    } catch (e) {
+      console.warn('Failed to refresh site settings:', e);
+    }
+  }, []);
+
+  useEffect(() => {
+    refreshSiteSettings();
+
+    // Listen to real-time custom event for immediate UI updates
+    const handleSettingsUpdate = (e: any) => {
+      if (e.detail) {
+        setSiteSettings(e.detail);
+      } else {
+        refreshSiteSettings();
+      }
+    };
+    window.addEventListener('ezar_settings_updated', handleSettingsUpdate);
+    return () => window.removeEventListener('ezar_settings_updated', handleSettingsUpdate);
+  }, [refreshSiteSettings]);
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -164,6 +195,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     isRTL,
     t,
     formatPrice,
+    siteSettings,
+    setSiteSettings,
+    refreshSiteSettings,
     cart,
     cartCount,
     cartSubtotal,
