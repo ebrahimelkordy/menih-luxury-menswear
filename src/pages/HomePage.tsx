@@ -55,6 +55,17 @@ export function HomePage() {
 
   return (
     <div className="overflow-hidden">
+      {/* Top Moving Black Marquee Bar */}
+      <div className="w-full bg-espresso-dark text-ivory/85 border-b border-ivory/10 py-2.5 overflow-hidden text-xs select-none">
+        <div className="flex animate-marquee whitespace-nowrap gap-12 font-medium">
+          <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')}</span>
+          <span className="text-terracotta">✦</span>
+          <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')}</span>
+          <span className="text-terracotta">✦</span>
+          <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')}</span>
+          <span className="text-terracotta">✦</span>
+        </div>
+      </div>
       {/* ===== CINEMATIC HERO ===== */}
       <section className="relative h-screen min-h-[680px] overflow-hidden bg-espresso">
         {/* Parallax background */}
@@ -132,6 +143,13 @@ export function HomePage() {
           <div className="w-px h-12 bg-gradient-to-b from-ivory/40 to-transparent" />
         </div>
       </section>
+
+      {/* Luxury Gold Announcement Banner */}
+      <div className="w-full bg-gradient-to-r from-terracotta-dark via-terracotta to-terracotta-dark text-espresso font-bold py-3 px-4 text-center text-xs sm:text-sm tracking-wider shadow-lg flex items-center justify-center gap-2.5 border-y border-terracotta-light/30">
+        <Sparkles className="w-4 h-4 flex-shrink-0 text-espresso" />
+        <span>{lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee')}</span>
+        <Sparkles className="w-4 h-4 flex-shrink-0 text-espresso" />
+      </div>
 
       {/* ===== EDITORIAL QUOTE BANNER ===== */}
       <section className="py-24 bg-ivory">
