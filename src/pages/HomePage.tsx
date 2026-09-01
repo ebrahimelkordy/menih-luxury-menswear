@@ -55,17 +55,32 @@ export function HomePage() {
 
   return (
     <div className="overflow-hidden">
-      {/* Top Moving Black Marquee Bar */}
-      <div className="w-full bg-espresso-dark text-ivory/85 border-b border-ivory/10 py-2.5 overflow-hidden text-xs select-none">
-        <div className="flex animate-marquee whitespace-nowrap gap-12 font-medium">
-          <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')}</span>
-          <span className="text-terracotta">✦</span>
-          <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')}</span>
-          <span className="text-terracotta">✦</span>
-          <span>{lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')}</span>
-          <span className="text-terracotta">✦</span>
+      {/* ===== 1. TOP MOVING BLACK MARQUEE BAR ===== */}
+      <div className="w-full bg-[#0D0B0A] text-[#FAF8F5] border-b border-[#FAF8F5]/10 py-3 overflow-hidden select-none z-20 relative shadow-2xl">
+        <div className="ticker-track-left gap-10 font-medium text-xs tracking-wider items-center">
+          <div className="flex items-center gap-10 whitespace-nowrap">
+            <span>lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')</span>
+            <span className="text-[#C5A880] text-sm">✦</span>
+            <span>lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')</span>
+            <span className="text-[#C5A880] text-sm">✦</span>
+            <span>lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')</span>
+            <span className="text-[#C5A880] text-sm">✦</span>
+            <span>lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')</span>
+            <span className="text-[#C5A880] text-sm">✦</span>
+          </div>
+          <div className="flex items-center gap-10 whitespace-nowrap">
+            <span>lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')</span>
+            <span className="text-[#C5A880] text-sm">✦</span>
+            <span>lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')</span>
+            <span className="text-[#C5A880] text-sm">✦</span>
+            <span>lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')</span>
+            <span className="text-[#C5A880] text-sm">✦</span>
+            <span>lang === 'ar' ? (siteSettings.marqueeTextAr || 'إزار • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات') : (siteSettings.marqueeText || 'EZAR LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD')</span>
+            <span className="text-[#C5A880] text-sm">✦</span>
+          </div>
         </div>
       </div>
+
       {/* ===== CINEMATIC HERO ===== */}
       <section className="relative h-screen min-h-[680px] overflow-hidden bg-espresso">
         {/* Parallax background */}
@@ -120,14 +135,14 @@ export function HomePage() {
               >
                 <button
                   onClick={() => navigate({ name: 'shop' })}
-                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-ivory text-espresso text-sm font-semibold rounded-full magnetic-btn hover:bg-cream"
+                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-ivory text-espresso text-sm font-semibold rounded-full magnetic-btn hover:bg-cream cursor-pointer"
                 >
                   {t('hero.cta')}
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </button>
                 <button
                   onClick={() => navigate({ name: 'mix-match' })}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-ivory/25 text-ivory text-sm font-semibold rounded-full magnetic-btn hover:bg-ivory/10 backdrop-blur-sm"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-ivory/25 text-ivory text-sm font-semibold rounded-full magnetic-btn hover:bg-ivory/10 backdrop-blur-sm cursor-pointer"
                 >
                   <Sparkles className="w-4 h-4 text-rose-dust" />
                   {t('hero.ctaSecondary')}
@@ -139,16 +154,40 @@ export function HomePage() {
 
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in" style={{ animationDelay: '1.2s', opacity: 0 }}>
-          <span className="text-[10px] tracking-[0.2em] uppercase text-ivory/40">{lang === 'ar' ? '?????' : 'Scroll'}</span>
+          <span className="text-[10px] tracking-[0.2em] uppercase text-ivory/40">{lang === 'ar' ? 'اسحب للأسفل' : 'Scroll'}</span>
           <div className="w-px h-12 bg-gradient-to-b from-ivory/40 to-transparent" />
         </div>
       </section>
 
-      {/* Luxury Gold Announcement Banner */}
-      <div className="w-full bg-gradient-to-r from-terracotta-dark via-terracotta to-terracotta-dark text-espresso font-bold py-3 px-4 text-center text-xs sm:text-sm tracking-wider shadow-lg flex items-center justify-center gap-2.5 border-y border-terracotta-light/30">
-        <Sparkles className="w-4 h-4 flex-shrink-0 text-espresso" />
-        <span>{lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee')}</span>
-        <Sparkles className="w-4 h-4 flex-shrink-0 text-espresso" />
+      {/* ===== 2. BOTTOM MOVING GOLD MARQUEE BAR ===== */}
+      <div
+        className="w-full text-[#1A1615] font-bold py-3 overflow-hidden select-none z-20 relative shadow-2xl border-y border-[#B89635]"
+        style={{
+          background: 'linear-gradient(90deg, #A88958 0%, #E8D3A7 25%, #C5A880 50%, #E8D3A7 75%, #A88958 100%)'
+        }}
+      >
+        <div className="ticker-track-right gap-10 text-xs sm:text-sm tracking-wider items-center">
+          <div className="flex items-center gap-10 whitespace-nowrap">
+            <span>lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية أصلية') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee • Pure Japanese & Giza Cotton')</span>
+            <span className="text-[#1A1615]/60 text-base">✦</span>
+            <span>lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية أصلية') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee • Pure Japanese & Giza Cotton')</span>
+            <span className="text-[#1A1615]/60 text-base">✦</span>
+            <span>lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية أصلية') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee • Pure Japanese & Giza Cotton')</span>
+            <span className="text-[#1A1615]/60 text-base">✦</span>
+            <span>lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية أصلية') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee • Pure Japanese & Giza Cotton')</span>
+            <span className="text-[#1A1615]/60 text-base">✦</span>
+          </div>
+          <div className="flex items-center gap-10 whitespace-nowrap">
+            <span>lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية أصلية') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee • Pure Japanese & Giza Cotton')</span>
+            <span className="text-[#1A1615]/60 text-base">✦</span>
+            <span>lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية أصلية') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee • Pure Japanese & Giza Cotton')</span>
+            <span className="text-[#1A1615]/60 text-base">✦</span>
+            <span>lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية أصلية') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee • Pure Japanese & Giza Cotton')</span>
+            <span className="text-[#1A1615]/60 text-base">✦</span>
+            <span>lang === 'ar' ? (siteSettings.goldBannerTextAr || 'تفصيل ملكي مخصص • شحن مجاني لكافة المحافظات للطلبات الأكثر من ٢٠٠٠ ج.م • ضمان استبدال وتعديل المقاس • أقمشة يابانية ومصرية أصلية') : (siteSettings.goldBannerText || 'Bespoke Royal Tailoring • Free Luxury Shipping on Orders Over 2,000 EGP • Perfect Fit Guarantee • Pure Japanese & Giza Cotton')</span>
+            <span className="text-[#1A1615]/60 text-base">✦</span>
+          </div>
+        </div>
       </div>
 
       {/* ===== EDITORIAL QUOTE BANNER ===== */}

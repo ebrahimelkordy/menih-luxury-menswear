@@ -235,3 +235,26 @@ input[type="range"]::-webkit-slider-thumb {
 img {
   background-color: #F5F0EB;
 }
+
+/* Smooth Infinite Marquee Tickers */
+@keyframes tickerMoveLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes tickerMoveRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+.ticker-track-left {
+  display: flex;
+  width: max-content;
+  animation: tickerMoveLeft 35s linear infinite;
+}
+.ticker-track-right {
+  display: flex;
+  width: max-content;
+  animation: tickerMoveRight 35s linear infinite;
+}
+.ticker-track-left:hover, .ticker-track-right:hover {
+  animation-play-state: paused;
+}
