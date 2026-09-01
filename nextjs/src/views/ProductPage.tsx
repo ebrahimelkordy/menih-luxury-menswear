@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
   Star, Plus, Minus, Check, Ruler, Wind, Layers, Weight, ChevronRight,
   Share2, Truck, ShieldCheck, RotateCcw, X, MessageSquare, Send, Award
@@ -73,7 +73,7 @@ export function ProductPage({ handle }: { handle: string }) {
     setReviewSuccess(false);
 
     if (product) {
-      const stored = localStorage.getItem(`menih_reviews_${product.id}`);
+      const stored = localStorage.getItem(`ezar_reviews_${product.id}`);
       if (stored) {
         setReviews(JSON.parse(stored));
       } else {
@@ -148,7 +148,7 @@ export function ProductPage({ handle }: { handle: string }) {
 
     const updated = [newRev, ...reviews];
     setReviews(updated);
-    localStorage.setItem(`menih_reviews_${product.id}`, JSON.stringify(updated));
+    localStorage.setItem(`ezar_reviews_${product.id}`, JSON.stringify(updated));
 
     setReviewAuthor('');
     setReviewCity('');

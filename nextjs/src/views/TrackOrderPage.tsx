@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Search, Package, Truck, CheckCircle2, Clock, AlertCircle,
   Phone, MessageCircle, MapPin, Calendar, ArrowRight, ShieldCheck, RefreshCw
@@ -128,7 +128,7 @@ export function TrackOrderPage() {
                 required
                 value={orderNumberInput}
                 onChange={(e) => setOrderNumberInput(e.target.value.toUpperCase())}
-                placeholder="مثال: MENIH-849201"
+                placeholder="مثال: EZAR-849201"
                 className="w-full px-4 py-3 bg-sand/30 border border-cream rounded-xl text-sm font-mono font-bold text-espresso placeholder:text-espresso/40 outline-none focus:border-terracotta transition-colors uppercase tracking-wider"
               />
             </div>
@@ -318,7 +318,7 @@ export function TrackOrderPage() {
               </h3>
               <p className="text-xs text-espresso/60 max-w-md mx-auto leading-relaxed">
                 {lang === 'ar'
-                  ? 'يرجى التأكد من كتابة رقم الطلب بالشكل الصحيح (مثال: MENIH-849201) أو التواصل معنا مباشرة عبر الواتساب للمساعدة الفورية.'
+                  ? 'يرجى التأكد من كتابة رقم الطلب بالشكل الصحيح (مثال: EZAR-849201) أو التواصل معنا مباشرة عبر الواتساب للمساعدة الفورية.'
                   : 'Please check your order number or reach out via WhatsApp for immediate support.'}
               </p>
               <div className="pt-2">

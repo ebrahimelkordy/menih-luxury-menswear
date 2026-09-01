@@ -246,7 +246,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 export async function saveSiteSettings(settings: SiteSettings): Promise<boolean> {
   if (typeof window !== 'undefined') {
     localStorage.setItem('ezar_site_settings', JSON.stringify(settings));
-    localStorage.setItem('menih_site_settings', JSON.stringify(settings));
+    localStorage.setItem('ezar_site_settings', JSON.stringify(settings));
   }
   try {
     await updateSiteSettingsApi(settings);

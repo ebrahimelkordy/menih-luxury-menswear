@@ -42,7 +42,7 @@ export interface CartItem {
   addedAt?: number;
 }
 
-// Curated high-luxury editorial images generated specifically for MENIH
+// Curated high-luxury editorial images generated specifically for EZAR
 const img = {
   heroVeiledMan: '/images/hero-arabian-man.jpg',
   thobeGandoura: '/images/thobe-gandoura.jpg',
@@ -165,9 +165,9 @@ export const products: Product[] = [
   // 2. Shemaghs & Shawls
   {
     id: 'p4',
-    title: 'MENIH Royal Crimson Jacquard Shemagh',
-    titleAr: 'شماغ المنيع الملكي الأحمر — جاكار إمبراطوري',
-    handle: 'menih-royal-crimson-jacquard-shemagh',
+    title: 'EZAR Royal Crimson Jacquard Shemagh',
+    titleAr: 'شماغ إزار الملكي الأحمر — جاكار إمبراطوري',
+    handle: 'ezar-royal-crimson-jacquard-shemagh',
     price: 1450,
     compareAtPrice: 1750,
     category: 'shemagh',
@@ -183,7 +183,7 @@ export const products: Product[] = [
     reviewsCount: 230,
     featured: true,
     description: 'The definitive royal red shemagh crafted from long-staple cotton with tight jacquard geometric weaves. Edges are laser-aligned to ensure perfect symmetrical draping and crease retention.',
-    descriptionAr: 'شماغ المنيع الكلاسيكي الأحمر المنسوج بأعلى درجات الدقة والجاكار المتقن. حواف متطابقة بالملليمتر وتطريز حريري يمنحك ثباتاً ورسمة شماغ مثالية طوال اليوم.',
+    descriptionAr: 'شماغ إزار الكلاسيكي الأحمر المنسوج بأعلى درجات الدقة والجاكار المتقن. حواف متطابقة بالملليمتر وتطريز حريري يمنحك ثباتاً ورسمة شماغ مثالية طوال اليوم.',
     variants: [
       v('p4-v1', 'Imperial Crimson & White', 'أحمر ملوكي وأبيض ناصع', '#8B1E2D', 'bold', img.shemaghKashmiri),
     ],
@@ -322,8 +322,8 @@ export const products: Product[] = [
   {
     id: 'p10',
     title: 'Ezar Imperial Amber & Taif Rose Extrait',
-    titleAr: 'عطر المنيع السلطاني — العنبر والمسك والورد الطائفي',
-    handle: 'maison-menih-imperial-amber-taif-rose',
+    titleAr: 'عطر إزار السلطاني — العنبر والمسك والورد الطائفي',
+    handle: 'maison-ezar-imperial-amber-taif-rose',
     price: 3400,
     compareAtPrice: 3900,
     category: 'fragrances',

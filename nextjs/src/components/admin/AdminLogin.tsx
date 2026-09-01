@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { ShieldCheck, Lock, ArrowRight, Sparkles, KeyRound } from 'lucide-react';
 
 interface AdminLoginProps {
@@ -11,9 +11,9 @@ export function AdminLogin({ onSuccess }: AdminLoginProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Default admin passcodes: 'menih2026', 'admin123', or '1234'
-    if (passcode === 'menih2026' || passcode === 'admin123' || passcode === '1234' || passcode === 'menih') {
-      localStorage.setItem('menih_admin_auth', 'authenticated');
+    // Default admin passcodes: 'ezar2026', 'admin123', or '1234'
+    if (passcode === 'ezar2026' || passcode === 'admin123' || passcode === '1234' || passcode === 'menih') {
+      localStorage.setItem('ezar_admin_auth', 'authenticated');
       setError(false);
       onSuccess();
     } else {
@@ -34,7 +34,7 @@ export function AdminLogin({ onSuccess }: AdminLoginProps) {
           </div>
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-terracotta/10 text-terracotta text-xs font-semibold mb-2">
             <Sparkles className="w-3.5 h-3.5" />
-            بوابة الإدارة الملكية • MENIH Concierge
+            بوابة الإدارة الملكية • EZAR Concierge
           </div>
           <h1 className="font-serif text-2xl font-bold text-ivory">لوحة تحكم إزار</h1>
           <p className="text-xs text-ivory/50 mt-1.5">أدخل رمز المرور السري للدخول وإدارة المتجر</p>
@@ -60,7 +60,7 @@ export function AdminLogin({ onSuccess }: AdminLoginProps) {
               <KeyRound className="w-4 h-4 text-terracotta/50 absolute left-4 top-1/2 -translate-y-1/2" />
             </div>
             {error && (
-              <p className="text-xs text-red-400 mt-2 text-center">رمز المرور غير صحيح. (الرمز الافتراضي: 1234 أو menih2026)</p>
+              <p className="text-xs text-red-400 mt-2 text-center">رمز المرور غير صحيح. (الرمز الافتراضي: 1234 أو ezar2026)</p>
             )}
           </div>
 

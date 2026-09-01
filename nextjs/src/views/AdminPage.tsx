@@ -14,7 +14,7 @@ interface AdminPageProps {
 
 export function AdminPage({ initialTab = 'overview' }: AdminPageProps) {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
-    return localStorage.getItem('menih_admin_auth') === 'authenticated';
+    return localStorage.getItem('ezar_admin_auth') === 'authenticated';
   });
   const [currentTab, setCurrentTab] = useState<string>(initialTab);
 
@@ -25,7 +25,7 @@ export function AdminPage({ initialTab = 'overview' }: AdminPageProps) {
   }, [initialTab]);
 
   const handleLogout = () => {
-    localStorage.removeItem('menih_admin_auth');
+    localStorage.removeItem('ezar_admin_auth');
     setIsAuthenticated(false);
   };
 

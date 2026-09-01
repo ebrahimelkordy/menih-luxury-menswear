@@ -104,7 +104,7 @@ export function CheckoutModal({ subtotal, discount, shipping, total, onClose }: 
       }, 100);
     } catch (err) {
       console.error('Failed to submit order to API:', err);
-      const mockOrderNo = `MENIH-${Date.now().toString().slice(-6)}`;
+      const mockOrderNo = `EZAR-${Date.now().toString().slice(-6)}`;
       setOrderNumber(mockOrderNo);
       setStep('confirmed');
       setTimeout(() => {

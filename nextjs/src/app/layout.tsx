@@ -1,12 +1,12 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: { default: 'MENIH — إزار للملابس الرجالية الفاخرة', template: '%s — إزار' },
-  description: 'ثياب مخيطة خصيصاً، بشوت ملكية، أشمغة فاخرة ودهن عود كمبودي معتق. Bespoke Arabian menswear crafted for the modern gentleman.',
-  keywords: ['ثياب فاخرة', 'بشت ملكي', 'عباءة رجالي', 'luxury thobe', 'Arabian menswear', 'MENIH'],
+  title: { default: 'EZAR — إزار للملابس الرجالية الفاخرة', template: '%s — إزار' },
+  description: 'إزار | دار الأزياء الرجالية الفاخرة | ثياب مخيطة خصيصاً وبشوت ملكية وعباءات فاخرة',
+  keywords: ['ثياب فاخرة', 'بشت ملكي', 'عباءة رجالي', 'luxury thobe', 'Arabian menswear', 'EZAR'],
   openGraph: {
-    siteName: 'إزار | MENIH Luxury',
+    siteName: 'إزار | EZAR Luxury',
     locale: 'ar_EG',
     type: 'website',
   },

@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
   Search, Eye, Trash2, Printer, Download,
   Package, X, Phone, MapPin, Calendar, CreditCard, MessageCircle, ExternalLink
@@ -75,7 +75,7 @@ export function AdminOrdersTab() {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
-    link.setAttribute('download', `menih_orders_${new Date().toISOString().slice(0, 10)}.csv`);
+    link.setAttribute('download', `ezar_orders_${new Date().toISOString().slice(0, 10)}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

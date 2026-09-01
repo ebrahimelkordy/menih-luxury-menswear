@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Instagram, Facebook, MessageCircle, Phone, Mail, MapPin } from 'lucide-react';
+import { Instagram, Facebook, MessageCircle, Send, Phone, Mail, MapPin } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 import { categories } from '@/services/mockData';
 import { getSiteSettings, type SiteSettings, defaultSiteSettings } from '@/services/adminService';
@@ -23,9 +23,9 @@ export function Footer() {
         {/* Brand */}
         <div className="space-y-4">
           <div>
-            <span className="font-serif text-2xl font-bold tracking-[0.25em] text-ivory">MENIH</span>
+            <span className="font-serif text-2xl font-bold tracking-[0.25em] text-ivory">EZAR</span>
             <span className="block text-[9px] tracking-[0.3em] text-terracotta uppercase font-medium mt-0.5">
-              {lang === 'ar' ? 'المنيع للرجال' : 'Luxury Menswear'}
+              {lang === 'ar' ? 'إزار للرجال' : 'Luxury Menswear'}
             </span>
           </div>
           <p className="text-xs text-ivory/60 leading-relaxed max-w-xs">

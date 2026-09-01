@@ -42,7 +42,7 @@ export function Header() {
           scrolled ? 'frosted-header shadow-[0_1px_20px_rgba(26,22,21,0.06)]' : 'bg-ivory/95 backdrop-blur-md border-b border-cream/50'
         }`}
       >
-        <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-10">
+        <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-10 overflow-hidden">
           <div className={`flex items-center justify-between transition-all duration-500 ${scrolled ? 'h-16' : 'h-20'}`}>
             
             {/* Left Section: Mobile Menu Trigger & Desktop Navigation */}
@@ -55,10 +55,10 @@ export function Header() {
                 <Menu className="w-5 h-5" />
               </button>
 
-              <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
+              <nav className="hidden lg:flex items-center gap-3 xl:gap-5 overflow-hidden">
                 <button
                   onClick={() => go({ name: 'shop' })}
-                  className="text-sm font-medium text-espresso link-underline whitespace-nowrap py-1"
+                  className="text-sm font-medium text-espresso link-underline whitespace-nowrap py-1 shrink-0"
                 >
                   {t('nav.collections')}
                 </button>
@@ -66,14 +66,14 @@ export function Header() {
                   <button
                     key={cat.id}
                     onClick={() => go({ name: 'shop', category: cat.id })}
-                    className="text-sm font-medium text-espresso/70 hover:text-espresso transition-colors link-underline whitespace-nowrap py-1"
+                    className="text-sm font-medium text-espresso/70 hover:text-espresso transition-colors link-underline whitespace-nowrap py-1 shrink-0"
                   >
                     {lang === 'ar' ? cat.nameAr : cat.name}
                   </button>
                 ))}
                 <button
                   onClick={() => go({ name: 'mix-match' })}
-                  className="text-sm font-medium text-terracotta hover:text-terracotta-dark transition-colors link-underline whitespace-nowrap py-1"
+                  className="text-sm font-medium text-terracotta hover:text-terracotta-dark transition-colors link-underline whitespace-nowrap py-1 shrink-0"
                 >
                   ✦ {t('nav.mixMatch')}
                 </button>
@@ -87,10 +87,10 @@ export function Header() {
                 className="flex flex-col items-center no-tap-highlight group"
               >
                 <span className="font-serif text-lg sm:text-2xl font-bold tracking-[0.25em] text-espresso leading-none group-hover:text-terracotta transition-colors">
-                  MENIH
+                  EZAR
                 </span>
                 <span className="text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] text-terracotta uppercase mt-0.5 font-medium">
-                  {lang === 'ar' ? 'المنيع للرجال' : 'Luxury Menswear'}
+                  {lang === 'ar' ? 'إزار للرجال' : 'Luxury Menswear'}
                 </span>
               </button>
             </div>
@@ -197,9 +197,9 @@ export function MobileMenu() {
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-cream">
           <div>
-            <span className="font-serif text-xl font-bold tracking-[0.2em] text-espresso">MENIH</span>
+            <span className="font-serif text-xl font-bold tracking-[0.2em] text-espresso">EZAR</span>
             <span className="block text-[9px] tracking-[0.25em] text-terracotta uppercase">
-              {lang === 'ar' ? 'المنيع للرجال' : 'Luxury Menswear'}
+              {lang === 'ar' ? 'إزار للرجال' : 'Luxury Menswear'}
             </span>
           </div>
           <button onClick={closeMenu} className="p-2 rounded-full hover:bg-cream transition-colors" aria-label={t('nav.close')}>

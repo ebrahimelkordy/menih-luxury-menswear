@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import Link from 'next/link';
 import { ExternalLink, Phone, MessageCircle } from 'lucide-react';
@@ -14,7 +14,7 @@ export default function Footer({ settings }: { settings: SiteSettings | null }) 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
-            <h3 className="text-2xl font-light tracking-[0.2em] mb-2">MENIH</h3>
+            <h3 className="text-2xl font-light tracking-[0.2em] mb-2">EZAR</h3>
             <p className="text-[9px] tracking-[0.3em] text-gold uppercase mb-4">Maison Luxury</p>
             <p className="text-ivory/60 text-sm leading-relaxed max-w-xs">
               {lang === 'ar'
@@ -87,7 +87,7 @@ export default function Footer({ settings }: { settings: SiteSettings | null }) 
 
         <div className="border-t border-ivory/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-ivory/30 text-xs">
-            © {new Date().getFullYear()} إزار — MENIH Luxury. {lang === 'ar' ? 'جميع الحقوق محفوظة' : 'All rights reserved'}.
+            © {new Date().getFullYear()} EZAR Luxury. {lang === 'ar' ? 'جميع الحقوق محفوظة' : 'All rights reserved'}.
           </p>
           <p className="text-gold/40 text-xs tracking-widest">
             {lang === 'ar' ? 'صُنع في مصر بعناية وأصالة' : 'Crafted in Egypt with Heritage & Pride'}

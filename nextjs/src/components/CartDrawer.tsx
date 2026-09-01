@@ -31,7 +31,7 @@ export function CartDrawer() {
   const total = cartSubtotal - discount + shippingCost;
 
   const applyPromo = () => {
-    if (promoCode.toUpperCase() === 'MENIH10') {
+    if (promoCode.toUpperCase() === 'EZAR10') {
       setPromoApplied(true);
       setPromoError(false);
     } else {
