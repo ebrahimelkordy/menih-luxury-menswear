@@ -1,0 +1,145 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Category {
+  id            String    @id @default(uuid())
+  slug          String    @unique
+  name          String
+  nameAr        String
+  description   String    @default("")
+  descriptionAr String    @default("")
+  image         String    @default("")
+  displayOrder  Int       @default(0)
+  products      Product[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@map("categories")
+}
+
+model Product {
+  id             String           @id @default(uuid())
+  handle         String           @unique
+  categoryId     String
+  category       Category         @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  title          String
+  titleAr        String
+  price          Int
+  compareAtPrice Int?
+  fabric         String           @default("")
+  fabricAr       String           @default("")
+  sizes          String[]
+  rating         Float            @default(5.0)
+  reviewsCount   Int              @default(0)
+  description    String           @default("")
+  descriptionAr  String           @default("")
+  featured       Boolean          @default(false)
+  opacity        String           @default("")
+  opacityAr      String           @default("")
+  weight         String           @default("")
+  dimensions     String           @default("")
+  displayOrder   Int              @default(0)
+  variants       ProductVariant[]
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  @@map("products")
+}
+
+model ProductVariant {
+  id           String   @id @default(uuid())
+  productId    String
+  product      Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  name         String
+  nameAr       String
+  colorHex     String
+  colorFamily  String   @default("neutral")
+  image        String   @default("")
+  inStock      Boolean  @default(true)
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("product_variants")
+}
+
+model Order {
+  id              String   @id @default(uuid())
+  orderNumber     String   @unique
+  customerName    String
+  customerPhone   String
+  customerWhatsapp String?
+  customerEmail   String?
+  customerCity    String
+  customerAddress String
+  items           Json
+  subtotal        Int
+  bundleDiscount  Int      @default(0)
+  total           Int
+  status          String   @default("pending")
+  paymentMethod   String   @default("cod")
+  notes           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("orders")
+}
+
+model SiteSettings {
+  id                    String   @id @default("current")
+  heroTitle             String   @default("The Prestige of\nArabian Dignity")
+  heroTitleAr           String   @default("هيبة الأصالة\nوالوقار والتميز")
+  heroTagline           String   @default("Maison Menih — Luxury Arabian Menswear")
+  heroTaglineAr         String   @default("دار المنيع — أزياء رجالية عربية فاخرة")
+  heroSubtitle          String   @default("Bespoke thobes, royal ceremonial bishts, premium woven shemaghs & aged Dehn El Oud — crafted with precision for the modern gentleman.")
+  heroSubtitleAr        String   @default("ثياب مخيطة خصيصاً، بشت ملكي للمناسبات، أشمغة فاخرة ودهن العود الكمبودي المعتق — صُممت بدقة متناهية للرجل الأصيل.")
+  heroImage             String   @default("/images/hero-arabian-man.jpg")
+  heroCtaText           String   @default("Explore Collection")
+  heroCtaTextAr         String   @default("استكشف المجموعات")
+  marqueeText           String   @default("MENIH LUXURY • BESPOKE ARABIAN TAILORING • 100% GIZA COTTON • AGED CAMBODIAN OUD")
+  marqueeTextAr         String   @default("دار المنيع • تفصيل ملكي فاخر • قطن مصري جيزة ٩٤ • دهن عود كمبودي معتق • شحن لكافة المحافظات")
+  editorialQuote        String   @default("Prestige and dignity are not merely about appearance — they are reflections of values and heritage. Every piece at Maison Menih is crafted to command presence worthy of your status and legacy.")
+  editorialQuoteAr      String   @default("الهيبة والوقار ليسا مجرد مظهر — بل هما تعبير عن المبادئ والأصالة. كل قطعة في دار المنيع صُممت لتمنح حضوراً مهيباً يليق بمكانتك وتراثك العريق.")
+  quoteAuthor           String   @default("Founder, Maison Menih")
+  quoteAuthorAr         String   @default("المؤسس، دار المنيع")
+  promoCode             String   @default("MENIH10")
+  promoDiscountPercent  Int      @default(10)
+  bundleDiscountPercent Int      @default(15)
+  freeShippingThreshold Int      @default(1500)
+  flatShippingRate      Int      @default(50)
+  contactPhone          String   @default("+20 100 000 0000")
+  contactWhatsapp       String   @default("+20 100 000 0000")
+  contactEmail          String   @default("concierge@menih.com")
+  instagramUrl          String   @default("https://instagram.com/menih_luxury")
+  facebookUrl           String   @default("https://facebook.com/menih_luxury")
+  tiktokUrl             String   @default("https://tiktok.com/@menih_luxury")
+  address               String   @default("Sultan Hussein St., Heliopolis, Cairo, Egypt")
+  addressAr             String   @default("شارع السلطان حسين، مصر الجديدة، القاهرة، جمهورية مصر العربية")
+  mixMatchCategories    String[] @default(["thobe", "shemagh", "bisht", "accessories", "fragrances"])
+  updatedAt             DateTime @updatedAt
+
+  @@map("site_settings")
+}
+
+model Testimonial {
+  id           String   @id @default(uuid())
+  name         String
+  nameAr       String
+  city         String
+  cityAr       String
+  review       String
+  reviewAr     String
+  rating       Int      @default(5)
+  image        String   @default("/images/bisht-royal.jpg")
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("testimonials")
+}
